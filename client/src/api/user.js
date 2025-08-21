@@ -1,8 +1,10 @@
-export const handleSave = async () => {
+const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8080';
+
+export const handleSave = async ({ id, pw }) => {
   const userData = { id, pw };
 
   try {
-    const res = await fetch("http://localhost:8080/save", {
+    const res = await fetch(`${API_BASE}/save`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),

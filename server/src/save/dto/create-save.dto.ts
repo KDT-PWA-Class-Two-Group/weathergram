@@ -1,12 +1,10 @@
-// 유효성 검사 및 DTO 정의
-import { IsInt, IsOptional, IsString, Min } from 'class-validator';
+import { IsString, MinLength } from 'class-validator';
 
 export class CreateSaveDto {
   @IsString()
-  id: string;
+  userId: string;   
 
-  @IsInt()
-  @Min(0)
+  @IsString()
+  @MinLength(0)     
   password: string;
-
 }

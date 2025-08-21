@@ -17,7 +17,7 @@ async function bootstrap() {
   })
 
   // 공통 prefix -> /api/...
-  app.setGlobalPrefix('api')
+  // app.setGlobalPrefix('api')
 
   // 포트도 .env에서 불러오기
   const PORT = configService.get<number>('PORT') || 8080
