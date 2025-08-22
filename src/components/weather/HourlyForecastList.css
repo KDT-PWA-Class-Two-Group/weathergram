@@ -1,0 +1,44 @@
+.hourly-forecast-list {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 16px;
+  margin: 24px auto;
+  max-width: 350px;
+  overflow-x: auto;
+}
+.hourly-forecast-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #222;
+}
+.hourly-forecast-row {
+  display: flex;
+  gap: 8px;
+  min-width: 648px;
+}
+.hourly-forecast-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 54px;
+  flex: 0 0 54px;
+}
+.hourly-forecast-hour {
+  font-size: 15px;
+  color: #888;
+}
+.hourly-forecast-icon {
+  font-size: 28px;
+  margin: 4px 0;
+}
+.hourly-forecast-temp {
+  font-weight: 600;
+  color: #1e90ff;
+}
+.hourly-forecast-pop {
+  font-size: 13px;
+  color: #3a7;
+  margin-top: 2px;
+}
