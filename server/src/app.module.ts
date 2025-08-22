@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { SaveModule } from './save/save.module'
+import { UsersModule } from './users/users.module'
 
 @Module({
   imports: [
@@ -22,9 +23,11 @@ import { SaveModule } from './save/save.module'
         autoLoadEntities: true,
         synchronize: true, // 개발 중에만 true, 운영은 false + migration
         charset: 'utf8mb4',
+        logging: true,
       }),
     }),
     SaveModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
