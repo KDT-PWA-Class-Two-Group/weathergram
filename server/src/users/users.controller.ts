@@ -1,12 +1,15 @@
-import { Body, Controller, Post, HttpException, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Post, Get, HttpException, HttpStatus } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { ApiOperation } from '@nestjs/swagger';
 
+// 사용자 관련 API를 처리하는 컨트롤러
 @Controller('users')
 export class UserController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @ApiOperation({ summary: '사용자 저장 API', description: '사용자를 DB에 저장합니다.' })
   async create(@Body() dto: CreateUserDto) {
     try {
       console.log('dto:', dto);
@@ -20,4 +23,11 @@ export class UserController {
       throw new HttpException({ message: '저장 실패', detail: msg }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  // 유저 목록 조회이며 목록 조회할지 안할지 몰라서 만들어둠.
+  @Get()
+  @ApiOperation({ summary: '유저 목록 조회', description: 'DB에 저장된 모든 유저를 조회합니다.' })
+  findAll() {
+    return []; 
+  }    
 }
