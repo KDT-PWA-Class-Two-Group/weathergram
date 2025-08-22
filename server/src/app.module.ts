@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { UsersModule } from './users/users.module'
+import { PhotosModule } from './photos/photos.module'
 
 @Module({
   imports: [
@@ -25,7 +26,9 @@ import { UsersModule } from './users/users.module'
         logging: true,
       }),
     }),
+    // 모듈 등록 하는 곳
     UsersModule,
+    PhotosModule,
   ],
 })
 export class AppModule {}
