@@ -1,12 +1,10 @@
-import Login from "./Pages/login";
-import PostCard from "./components/common/PostCard";
+import Weather from "./Pages/Weather";
 
 function App() {
   return (
     <div>
       <h1>Hello, World!</h1>
-      <Login />
-      <PostCard />
+      <Weather />
     </div>
   );
 }
