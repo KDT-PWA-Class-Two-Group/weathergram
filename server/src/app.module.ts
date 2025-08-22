@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { SaveModule } from './save/save.module'
 import { UsersModule } from './users/users.module'
 
 @Module({
@@ -26,7 +25,6 @@ import { UsersModule } from './users/users.module'
         logging: true,
       }),
     }),
-    SaveModule,
     UsersModule,
   ],
 })
