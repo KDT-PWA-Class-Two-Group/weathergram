@@ -68,7 +68,7 @@ export default function Login() {
           }}
         />
         <button
-          onClick={() => handleSave({ id, pw })}
+          onClick={() => handleSave({ userId: id, password: pw })}
           style={{
             width: "100%",
             padding: "12px",

@@ -1,17 +1,31 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { SaveModule } from './save/save.module'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { UsersModule } from './users/users.module'
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,  // 전역으로 사용 가능
+      isGlobal: true,
     }),
-    SaveModule,
+    // TypeORM 설정
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (cfg: ConfigService) => ({
+        type: 'mariadb',
+        host: cfg.get<string>('DB_HOST'),
+        port: cfg.get<number>('DB_PORT'),
+        username: cfg.get<string>('DB_USERNAME'),
+        password: cfg.get<string>('DB_PASSWORD'),
+        database: cfg.get<string>('DB_NAME'),
+        autoLoadEntities: true,
+        synchronize: true, // 개발 중에만 true, 운영은 false + migration
+        charset: 'utf8mb4',
+        logging: true,
+      }),
+    }),
+    UsersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
