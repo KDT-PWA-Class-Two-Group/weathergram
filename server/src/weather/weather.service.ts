@@ -53,7 +53,12 @@ export class WeatherService {
 
     try {
       const { data } = await firstValueFrom(this.http.get(url, { params }));
-      return this.mapCurrentWeather(data);
+      const nameKo = await this.getKoreanCityName(lat, lon);
+      const mapped = this.mapCurrentWeather(data);
+      if (nameKo) {
+        mapped.name = nameKo; // 한글 도시명으로 교체
+      }
+      return mapped;
     } catch (e: any) {
       const status = e?.response?.status ?? 500;
       const message = e?.response?.data ?? 'OpenWeather current weather error';
@@ -84,5 +89,24 @@ export class WeatherService {
       clouds: data?.clouds ?? null,
       visibility: data?.visibility ?? null,
     };
+  }
+  /** Reverse Geocoding으로 한글 도시명 조회 (없으면 null) */
+  private async getKoreanCityName(lat: number, lon: number): Promise<string | null> {
+    const url = `${this.baseUrl}/geo/1.0/reverse`;
+    const params = { lat, lon, limit: 1, lang: 'kr', appid: this.apiKey };
+    try {
+      const { data } = await firstValueFrom(this.http.get(url, { params }));
+      if (Array.isArray(data) && data.length > 0) {
+        const item = data[0];
+        const localKo = item?.local_names?.ko;
+        if (typeof localKo === 'string' && localKo.length > 0) {
+          return localKo;
+        }
+        return item?.name ?? null;
+      }
+      return null;
+    } catch (_e) {
+      return null; // 실패해도 영문명으로 fallback
+    }
   }
 }
