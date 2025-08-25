@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:4000', // Nest 포트
+        target: 'http://localhost:8080', // Nest 포트
         changeOrigin: true
       }
     }
