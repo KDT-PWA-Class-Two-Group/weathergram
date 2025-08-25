@@ -21,9 +21,29 @@
 .marginTop-30px {margin-top: 30px;}
 .marginTop-70px {margin-top: 70px;}
 
+.marginLeft-5px {margin-left: 5px;}
 .marginLeft-10px {margin-left: 10px;}
 
 /* 디스플레이 */
 .display-flex{display: "flex";}
 .display-flex-column {display: "flex";
             flex-Direction: "column"}
+
+.display-flex-alignItems-center{display: flex;
+  align-items: center;}
+.display-flex-center-end{display: flex;
+  align-items: center;
+  justify-content: end;}
+
+/* 폰트 사이즈 */
+
+.font-size-16 {size: 16px;}
+.font-size-14 {size: 14px;}
+
+.font-weight-b{font-weight: 600;}
+
+            
+/* 프로필 설정 아이콘 */
+.profile-set {width: 30px;
+                height: 30px;
+                margin-Left:10px;}
