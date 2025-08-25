@@ -11,6 +11,7 @@ async function bootstrap() {
 
   // 보안 헤더
   app.use(helmet())
+  app.setGlobalPrefix('api') 
 
   // CORS: .env에서 CLIENT_URL 가져오기
   app.enableCors({
