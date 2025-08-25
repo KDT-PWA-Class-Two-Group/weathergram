@@ -1,10 +1,14 @@
 import WeatherInfo from "../components/weather/WeatherInfo";
+import TodaysTopPhoto from "../components/weather/TodaysTopPhoto";
+import HourlyForecastList from "../components/weather/HourlyForecastList";
 
 
 function Weather() {
   return (
-    <div>
+    <div className="weather-page-root">
       <WeatherInfo />
+      <TodaysTopPhoto />
+      <HourlyForecastList />
     </div>
   );
 }

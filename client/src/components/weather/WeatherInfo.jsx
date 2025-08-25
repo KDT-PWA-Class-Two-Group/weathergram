@@ -1,4 +1,3 @@
-
 import './WeatherInfo.css';
 
 // props: location, temp, tempMin, tempMax, icon, feelsLike, humidity, rain, wind

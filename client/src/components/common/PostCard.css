@@ -42,13 +42,12 @@
 }
 /* 이미지 영역 */
 .card-img-area {
-  width: 100%;
   border-radius: 16px;
   overflow: hidden;
   background: #fafafa;
 }
 .card-img {
-  width: 100%;
+  width: calc(100% - 16px);
   height: 320px;
   display: block;
   aspect-ratio: 1/1;

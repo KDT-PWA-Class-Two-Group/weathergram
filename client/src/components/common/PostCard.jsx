@@ -6,8 +6,8 @@ import "./PostCard.css";
 function PostCard({
   postId,
   userProfile,
-  username,
-  location,
+  username= "그린컴퓨터아카데미",
+  location= "둔산동",
   postImg,
   initialLikesCount = 0
 }) {
@@ -45,14 +45,14 @@ function PostCard({
   };
 
   return (
-    <div className="w-100p h-320px rounded-16 padding-24">
+    <div className="post-card">
       <div className="display-flex flex-row ali-items-c min-h-48px padding-b-10">
         <div className="w-45px h-45px rounded-full border-g">
           <img src={userProfile} alt="유저 프로필 사진" />
         </div>
         <div className="ml-12 display-flex flex-col">
-          <span className="font">{username} 그린컴퓨터아카데미</span>
-          <span className="card-location">{location} 둔산동</span>
+          <span className="font">{username}</span>
+          <span className="card-location">{location}</span>
         </div>
       </div>
       <div className="card-img-area">
