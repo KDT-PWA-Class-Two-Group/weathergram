@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get } from '@nestjs/common'
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 
+@ApiTags('App')  
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('/')
+  @ApiOperation({ summary: '루트 응답' })
+  @ApiOkResponse({ description: '서버 상태 OK' })
+  root() {
+    return { ok: true }
   }
 }
