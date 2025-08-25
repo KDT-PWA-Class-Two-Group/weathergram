@@ -1,0 +1,33 @@
+/* 가로 세로 크기 */
+.w-100 {width: 100%;}
+
+.h-70px {height: 70px;}
+
+.w-100px {width: 100px;}
+.w-160px {width: 160px;}
+
+.h-100px {height: 100px;}
+
+.radius-50 {border-radius: 50px;}
+
+/* 마진, 패딩 */
+
+.marginTop--10px {margin-top: -10px;}
+.marginTop--40px {margin-top: -40px;}
+
+.marginTop-30px {margin-top: 30px;}
+
+.marginLeft-10px {margin-left: 10px;}
+
+/* 디스플레이 */
+.display-flex-alignItems-center{display: flex;
+  align-items: center;}
+
+.display-flex-column {display: flex;
+            flex-Direction: column}
+
+            
+/* 프로필 설정 아이콘 */
+.profile-set {width: 30px;
+                height: 30px;
+                margin-Left:10px;}
