@@ -13,3 +13,10 @@ export const fetchHourlyForecast = async ({ lat, lon, cnt = 8 }) => {
   });
   return res.data;
 };
+
+export const fetchWeeklyForecast = async ({ lat, lon, cnt = 7 }) => {
+  const res = await axios.get("http://localhost:8080/weather/weekly", {
+    params: { lat, lon, cnt },
+  });
+  return res.data;
+};

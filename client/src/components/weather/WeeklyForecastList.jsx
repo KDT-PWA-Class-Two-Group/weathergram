@@ -1,16 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./WeeklyForecastList.css";
-
-// 예시 데이터: [{day, weather, min, max, pop}]
-const sampleData = [
-  { day: "월", weather: "clear", min: 21, max: 29, pop: 10 },
-  { day: "화", weather: "clouds", min: 22, max: 28, pop: 20 },
-  { day: "수", weather: "rain", min: 20, max: 25, pop: 60 },
-  { day: "목", weather: "clouds", min: 21, max: 27, pop: 30 },
-  { day: "금", weather: "clear", min: 23, max: 30, pop: 0 },
-  { day: "토", weather: "rain", min: 19, max: 24, pop: 50 },
-  { day: "일", weather: "clear", min: 22, max: 31, pop: 0 },
-];
+import { getBrowserLocation } from "../../utils/location";
+import { fetchWeeklyForecast } from "../../api/weather";
 
 function getWeatherIconUrl(weather) {
   switch (weather) {
@@ -29,7 +20,40 @@ function getWeatherIconUrl(weather) {
   }
 }
 
-function WeeklyForecastList({ data = sampleData }) {
+function WeeklyForecastList() {
+  const [forecast, setForecast] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { lat, lon } = await getBrowserLocation();
+        const res = await fetchWeeklyForecast({ lat, lon });
+        setForecast(res);
+      } catch (e) {
+        console.error("주간 예보 불러오기 실패:", e);
+        setError(e);
+      }
+    })();
+  }, []);
+
+  if (error)
+    return <div className="weekly-forecast-list">데이터를 불러오지 못했어요.</div>;
+  if (!forecast)
+    return <div className="weekly-forecast-list">로딩 중...</div>;
+
+  const data = (forecast.list ?? []).map((item) => {
+    const date = new Date((item.dt + (forecast.timezone || 0)) * 1000);
+    const day = ["일", "월", "화", "수", "목", "금", "토"][date.getUTCDay()];
+    return {
+      day,
+      weather: item.weather?.[0]?.main?.toLowerCase() || "clouds",
+      min: Math.round(item.temp?.min ?? 0),
+      max: Math.round(item.temp?.max ?? 0),
+      pop: Math.round((item.pop ?? 0) * 100),
+    };
+  });
+
   return (
     <div className="weekly-forecast-list">
       <div className="weekly-forecast-title">주간 예보</div>
@@ -39,10 +63,11 @@ function WeeklyForecastList({ data = sampleData }) {
             <div className="weekly-forecast-day">{item.day}</div>
             <div className="weekly-forecast-info">
               <div className="weekly-forecast-icon">
-              <img src={getWeatherIconUrl(item.weather)} alt={item.weather} />
-            </div>
+                <img src={getWeatherIconUrl(item.weather)} alt={item.weather} />
+              </div>
               <span className="weekly-forecast-min">{item.min}°C /</span>
               <span className="weekly-forecast-max">{item.max}°C</span>
+              <div className="weekly-forecast-pop">{`${item.pop}%`}</div>
             </div>
           </div>
         ))}
