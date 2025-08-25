@@ -3,19 +3,11 @@ import { IsOptional, IsInt, Min, Max } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class GetHourlyForecastDto extends CommonLocationDto {
-  // 가져올 시간 개수(기본 24시간, 최대 48시간: OWM OneCall hourly 한계)
+  // 가져올 3시간 단위 데이터 개수 (기본 8개 = 24시간, 최대 40개 = 5일치)
   @IsOptional()
-  @Transform(({ value }) => (value !== undefined ? Number(value) : 24))
+  @Transform(({ value }) => (value !== undefined ? Number(value) : 8))
   @IsInt()
   @Min(1)
-  @Max(48)
-  hours?: number = 24;
-
-  // 간격(시간). 2로 주면 2시간 단위로 down-sample
-  @IsOptional()
-  @Transform(({ value }) => (value !== undefined ? Number(value) : 2))
-  @IsInt()
-  @Min(1)
-  @Max(12)
-  step?: number = 2;
+  @Max(40)
+  cnt?: number = 8;
 }

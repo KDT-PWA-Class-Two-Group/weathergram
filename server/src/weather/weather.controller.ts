@@ -17,12 +17,5 @@ export class WeatherController {
     return this.weatherService.getCurrentWeather(query);
   }
 
-  /**
-   * GET /weather/hourly?city=Daejeon&country=KR&hours=24&step=2
-   * or GET /weather/hourly?lat=36.35&lon=127.38&hours=24&step=2
-   */
-  @Get('hourly')
-  async hourly(@Query() query: GetHourlyForecastDto) {
-    return this.weatherService.getHourlyForecast(query);
-  }
+
 }

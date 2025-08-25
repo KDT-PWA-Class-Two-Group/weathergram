@@ -3,7 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { GetCurrentWeatherDto } from './dto/current-weather.dto';
-import { GetHourlyForecastDto } from './dto/hourly-forecast.dto';
+import { GetForecast3hDto } from './dto/hourly-forecast.dto';
 
 type Coords = { lat: number; lon: number };
 
@@ -62,37 +62,34 @@ export class WeatherService {
     }
   }
 
-  /** 시간별 예보 (One Call 3.0 → hourly 최대 48개) → step 간격으로 downsample */
-  async getHourlyForecast(query: GetHourlyForecastDto) {
-    const { hours = 24, step = 2 } = query;
+  /** 3시간 간격 예보 (OpenWeather v2.5 /forecast) - 무료 플랜 */
+  async getForecast3h(query: GetForecast3hDto) {
+    const { cnt = 8 } = query; // 3시간 단위 개수 (기본 8개 = 24시간)
     const { lat, lon } = await this.resolveCoords(query);
-
-    const url = `${this.baseUrl}/data/3.0/onecall`;
+  
+    const url = `${this.baseUrl}/data/2.5/forecast`;
     const params = {
       lat,
       lon,
       units: 'metric',
       lang: 'kr',
-      exclude: 'current,minutely,daily,alerts',
+      cnt, // 최대 40개 (5일치)
       appid: this.apiKey,
     };
-
+  
     try {
       const { data } = await firstValueFrom(this.http.get(url, { params }));
-      const hourly: any[] = Array.isArray(data?.hourly) ? data.hourly : [];
-
-      // 요청한 hours만큼 자르고, step 간격으로 down-sample
-      const sliced = hourly.slice(0, hours);
-      const result = sliced.filter((_, idx) => idx % step === 0).map(this.mapHourlyItem);
+      const list: any[] = Array.isArray(data?.list) ? data.list : [];
+      const items = list.map(this.mapForecast3hItem);
       return {
         location: { lat, lon },
-        stepHours: step,
-        count: result.length,
-        items: result,
+        intervalHours: 3,
+        count: items.length,
+        items,
       };
     } catch (e: any) {
       const status = e?.response?.status ?? 500;
-      const message = e?.response?.data ?? 'OpenWeather hourly forecast error';
+      const message = e?.response?.data ?? 'OpenWeather 3-hour forecast error';
       throw new HttpException(message, status);
     }
   }
@@ -122,18 +119,18 @@ export class WeatherService {
     };
   }
 
-  private mapHourlyItem = (h: any) => ({
-    dt: h?.dt ?? null,                 // unix seconds
-    temp: h?.temp ?? null,
-    feels_like: h?.feels_like ?? null,
-    humidity: h?.humidity ?? null,
-    pressure: h?.pressure ?? null,
-    wind_speed: h?.wind_speed ?? null,
-    wind_deg: h?.wind_deg ?? null,
-    pop: h?.pop ?? 0,                  // 강수확률
-    rain_1h: h?.rain?.['1h'] ?? 0,     // 최근 1시간 강수량(mm)
-    snow_1h: h?.snow?.['1h'] ?? 0,
-    weather: Array.isArray(h?.weather) ? h.weather.map((w: any) => ({
+  private mapForecast3hItem = (f: any) => ({
+    dt: f?.dt ?? null, // unix seconds
+    temp: f?.main?.temp ?? null,
+    feels_like: f?.main?.feels_like ?? null,
+    humidity: f?.main?.humidity ?? null,
+    pressure: f?.main?.pressure ?? null,
+    wind_speed: f?.wind?.speed ?? null,
+    wind_deg: f?.wind?.deg ?? null,
+    pop: f?.pop ?? 0, // 강수확률
+    rain_3h: f?.rain?.['3h'] ?? 0, // 최근 3시간 강수량(mm)
+    snow_3h: f?.snow?.['3h'] ?? 0,
+    weather: Array.isArray(f?.weather) ? f.weather.map((w: any) => ({
       id: w.id, main: w.main, description: w.description, icon: w.icon,
     })) : [],
   });
