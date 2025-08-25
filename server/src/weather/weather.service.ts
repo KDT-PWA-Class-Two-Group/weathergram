@@ -91,29 +91,6 @@ export class WeatherService {
     }
   }
 
-  /** 주간 예보 */
-  async getWeeklyForecast(query: GetWeeklyForecastDto) {
-    const { lat, lon } = await this.resolveCoords(query);
-    const url = `${this.baseUrl}/data/2.5/onecall`;
-    const params = {
-      lat,
-      lon,
-      units: 'metric',
-      lang: 'kr',
-      exclude: 'current,minutely,hourly,alerts',
-      appid: this.apiKey,
-    };
-
-    try {
-      const { data } = await firstValueFrom(this.http.get(url, { params }));
-      return this.mapWeeklyForecast(data, query.cnt);
-    } catch (e: any) {
-      const status = e?.response?.status ?? 500;
-      const message = e?.response?.data ?? 'OpenWeather weekly forecast error';
-      throw new HttpException(message, status);
-    }
-  }
-
   // --- mappers ---
   private mapCurrentWeather(data: any) {
     return {
@@ -165,29 +142,6 @@ export class WeatherService {
     };
   }
 
-  private mapWeeklyForecast(data: any, cnt = 7) {
-    return {
-      timezone: data?.timezone_offset ?? null,
-      list: Array.isArray(data?.daily)
-        ? data.daily.slice(0, cnt).map((item: any) => ({
-            dt: item?.dt ?? null,
-            temp: {
-              min: item?.temp?.min ?? null,
-              max: item?.temp?.max ?? null,
-            },
-            weather: Array.isArray(item?.weather)
-              ? item.weather.map((w: any) => ({
-                  id: w.id,
-                  main: w.main,
-                  description: w.description,
-                  icon: w.icon,
-                }))
-              : [],
-            pop: item?.pop ?? 0,
-          }))
-        : [],
-    };
-  }
   /** Reverse Geocoding으로 한글 도시명 조회 (없으면 null) */
   private async getKoreanCityName(lat: number, lon: number): Promise<string | null> {
     const url = `${this.baseUrl}/geo/1.0/reverse`;

@@ -7,7 +7,7 @@ import { GetWeeklyForecastDto } from './dto/weekly-forecast.dto';
 
 @Controller('weather')
 export class WeatherController {
-  constructor(private readonly weatherService: WeatherService) {}
+  constructor(private readonly weatherService: WeatherService) { }
 
   /**
    * GET /weather/current?city=Daejeon&country=KR
@@ -24,13 +24,5 @@ export class WeatherController {
   @Get('hourly')
   async hourly(@Query() query: GetHourlyForecastDto) {
     return this.weatherService.getHourlyForecast(query);
-  }
-
-  /**
-   * GET /weather/weekly?lat=36.35&lon=127.38&cnt=7
-   */
-  @Get('weekly')
-  async weekly(@Query() query: GetWeeklyForecastDto) {
-    return this.weatherService.getWeeklyForecast(query);
   }
 }
