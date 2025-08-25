@@ -1,22 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./HourlyForecastList.css";
-
-// 예시 데이터: [{hour, weather, temp, pop}]
-const sampleData = [
-  { hour: "00시", weather: "clouds", temp: 22, pop: 0 },
-  { hour: "01시", weather: "clouds", temp: 21, pop: 0 },
-  { hour: "02시", weather: "clear", temp: 23, pop: 10 },
-  { hour: "03시", weather: "clear", temp: 27, pop: 0 },
-  { hour: "04시", weather: "clear", temp: 29, pop: 10 },
-  { hour: "05시", weather: "clouds", temp: 30, pop: 20 },
-  { hour: "06시", weather: "rain", temp: 26, pop: 60 },
-  { hour: "07시", weather: "clouds", temp: 24, pop: 0 },
-  { hour: "08시", weather: "clouds", temp: 22, pop: 0 },
-  { hour: "09시", weather: "rain", temp: 21, pop: 30 },
-  { hour: "10시", weather: "rain", temp: 23, pop: 20 },
-  { hour: "11시", weather: "clear", temp: 27, pop: 0 },
-];
-
+import { getBrowserLocation } from "../../utils/location";
+import { fetchHourlyForecast } from "../../api/weather";
 
 function getWeatherIconUrl(weather) {
   switch (weather) {
@@ -35,7 +20,39 @@ function getWeatherIconUrl(weather) {
   }
 }
 
-function HourlyForecastList({ data = sampleData }) {
+function HourlyForecastList() {
+  const [forecast, setForecast] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { lat, lon } = await getBrowserLocation();
+        const res = await fetchHourlyForecast({ lat, lon });
+        setForecast(res);
+      } catch (e) {
+        console.error("시간별 예보 불러오기 실패:", e);
+        setError(e);
+      }
+    })();
+  }, []);
+
+  if (error)
+    return <div className="hourly-forecast-list">데이터를 불러오지 못했어요.</div>;
+  if (!forecast)
+    return <div className="hourly-forecast-list">로딩 중...</div>;
+
+  const data = (forecast.list ?? []).map((item) => {
+    const date = new Date((item.dt + (forecast.timezone || 0)) * 1000);
+    const hour = date.getUTCHours().toString().padStart(2, "0");
+    return {
+      hour: `${hour}시`,
+      weather: item.weather?.[0]?.main?.toLowerCase() || "clouds",
+      temp: Math.round(item.main?.temp ?? 0),
+      pop: Math.round((item.pop ?? 0) * 100),
+    };
+  });
+
   return (
     <div className="hourly-forecast-list">
       <div className="hourly-forecast-title">시간별 예보</div>

@@ -3,6 +3,8 @@ import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { GetCurrentWeatherDto } from './dto/current-weather.dto';
+import { GetHourlyForecastDto } from './dto/hourly-forecast.dto';
+import { GetWeeklyForecastDto } from './dto/weekly-forecast.dto';
 
 type Coords = { lat: number; lon: number };
 
@@ -66,6 +68,29 @@ export class WeatherService {
     }
   }
 
+  /** 3시간 단위 예보 */
+  async getHourlyForecast(query: GetHourlyForecastDto) {
+    const { lat, lon } = await this.resolveCoords(query);
+    const url = `${this.baseUrl}/data/2.5/forecast`;
+    const params = {
+      lat,
+      lon,
+      units: 'metric',
+      lang: 'kr',
+      cnt: query.cnt ?? 8,
+      appid: this.apiKey,
+    };
+
+    try {
+      const { data } = await firstValueFrom(this.http.get(url, { params }));
+      return this.mapHourlyForecast(data);
+    } catch (e: any) {
+      const status = e?.response?.status ?? 500;
+      const message = e?.response?.data ?? 'OpenWeather hourly forecast error';
+      throw new HttpException(message, status);
+    }
+  }
+
   // --- mappers ---
   private mapCurrentWeather(data: any) {
     return {
@@ -90,6 +115,33 @@ export class WeatherService {
       visibility: data?.visibility ?? null,
     };
   }
+
+  private mapHourlyForecast(data: any) {
+    return {
+      city: data?.city?.name ?? null,
+      timezone: data?.city?.timezone ?? null,
+      list: Array.isArray(data?.list)
+        ? data.list.map((item: any) => ({
+            dt: item?.dt ?? null,
+            main: {
+              temp: item?.main?.temp ?? null,
+              feels_like: item?.main?.feels_like ?? null,
+              humidity: item?.main?.humidity ?? null,
+            },
+            weather: Array.isArray(item?.weather)
+              ? item.weather.map((w: any) => ({
+                  id: w.id,
+                  main: w.main,
+                  description: w.description,
+                  icon: w.icon,
+                }))
+              : [],
+            pop: item?.pop ?? 0,
+          }))
+        : [],
+    };
+  }
+
   /** Reverse Geocoding으로 한글 도시명 조회 (없으면 null) */
   private async getKoreanCityName(lat: number, lon: number): Promise<string | null> {
     const url = `${this.baseUrl}/geo/1.0/reverse`;
