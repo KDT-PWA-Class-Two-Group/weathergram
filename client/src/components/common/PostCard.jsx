@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./../common/CommonCss.css";
 import "./PostCard.css";
 
 // postId prop이 필요합니다 (각 포스트 고유값)
@@ -46,11 +45,11 @@ function PostCard({
 
   return (
     <div className="post-card">
-      <div className="display-flex flex-row ali-items-c min-h-48px padding-b-10">
-        <div className="w-45px h-45px rounded-full border-g">
+      <div className="card-header">
+        <div className="card-profile">
           <img src={userProfile} alt="유저 프로필 사진" />
         </div>
-        <div className="ml-12 display-flex flex-col">
+        <div className="card-user-info">
           <span className="font">{username}</span>
           <span className="card-location">{location}</span>
         </div>
