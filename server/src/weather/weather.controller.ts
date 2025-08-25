@@ -16,6 +16,4 @@ export class WeatherController {
   async current(@Query() query: GetCurrentWeatherDto) {
     return this.weatherService.getCurrentWeather(query);
   }
-
-
 }

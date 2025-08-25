@@ -3,7 +3,6 @@ import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { GetCurrentWeatherDto } from './dto/current-weather.dto';
-import { GetForecast3hDto } from './dto/hourly-forecast.dto';
 
 type Coords = { lat: number; lon: number };
 
@@ -62,38 +61,6 @@ export class WeatherService {
     }
   }
 
-  /** 3시간 간격 예보 (OpenWeather v2.5 /forecast) - 무료 플랜 */
-  async getForecast3h(query: GetForecast3hDto) {
-    const { cnt = 8 } = query; // 3시간 단위 개수 (기본 8개 = 24시간)
-    const { lat, lon } = await this.resolveCoords(query);
-  
-    const url = `${this.baseUrl}/data/2.5/forecast`;
-    const params = {
-      lat,
-      lon,
-      units: 'metric',
-      lang: 'kr',
-      cnt, // 최대 40개 (5일치)
-      appid: this.apiKey,
-    };
-  
-    try {
-      const { data } = await firstValueFrom(this.http.get(url, { params }));
-      const list: any[] = Array.isArray(data?.list) ? data.list : [];
-      const items = list.map(this.mapForecast3hItem);
-      return {
-        location: { lat, lon },
-        intervalHours: 3,
-        count: items.length,
-        items,
-      };
-    } catch (e: any) {
-      const status = e?.response?.status ?? 500;
-      const message = e?.response?.data ?? 'OpenWeather 3-hour forecast error';
-      throw new HttpException(message, status);
-    }
-  }
-
   // --- mappers ---
   private mapCurrentWeather(data: any) {
     return {
@@ -118,20 +85,4 @@ export class WeatherService {
       visibility: data?.visibility ?? null,
     };
   }
-
-  private mapForecast3hItem = (f: any) => ({
-    dt: f?.dt ?? null, // unix seconds
-    temp: f?.main?.temp ?? null,
-    feels_like: f?.main?.feels_like ?? null,
-    humidity: f?.main?.humidity ?? null,
-    pressure: f?.main?.pressure ?? null,
-    wind_speed: f?.wind?.speed ?? null,
-    wind_deg: f?.wind?.deg ?? null,
-    pop: f?.pop ?? 0, // 강수확률
-    rain_3h: f?.rain?.['3h'] ?? 0, // 최근 3시간 강수량(mm)
-    snow_3h: f?.snow?.['3h'] ?? 0,
-    weather: Array.isArray(f?.weather) ? f.weather.map((w: any) => ({
-      id: w.id, main: w.main, description: w.description, icon: w.icon,
-    })) : [],
-  });
 }
