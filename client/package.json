@@ -29,5 +29,7 @@
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
-}
+  "license": "ISC",
+    "vite": "^7.1.3"
+  }
+
