@@ -16,7 +16,7 @@ async function bootstrap() {
     .filter(Boolean);
   // 개발 편의상 기본 허용 (Vite/CRA): 없으면  http://localhost:5173, http://localhost:3000
   if (allowedOrigins.length === 0) {
-    allowedOrigins.push('http://localhost:5173', 'http://localhost:3000');
+    allowedOrigins.push();
   }
 
   // 보안 헤더
