@@ -22,12 +22,12 @@ export default function MyPages (){
     setUserProfileImage(newImageUrl)
   }
 
+  // 프로필 배경사진 변경하기
+
   return(
     <div>
       <div className='w-100 display-flex-column'
-       style={{height: "930px",
-          backgroundColor: "#fff",
-          border: "1px solid #bbb",
+       style={{height: "aotu"
         }}>
 
           {/* 프로필 헤더 */}
@@ -38,10 +38,7 @@ export default function MyPages (){
           {/* 프로필 사진, 이름 */}
           <div className='w-100 h-100px display-flex-alignItems-center marginTop--40px'>
             <div className="w-100px h-100px radius-50 marginLeft-10px"
-            style={{
-              backgroundColor: "skyblue",
-              cursor :'pointer'
-            }}>
+            style={{backgroundColor: "skyblue"}}>
               {/* 프로필 이미지 (이미지가 없을시 배경색만 보임) */}
               {userProfileImage ?(
                 <img src={userProfileImage}
@@ -54,15 +51,15 @@ export default function MyPages (){
               
               </div>
             
-            <div className="w-160px h-70px marginLeft-10px marginTop-30px">
+            <div className="w-240px h-70px marginLeft-20px marginTop-30px">
               <p className='font-size-16 font-weight-b'>{userCustomName}</p>
-              <p className="font-size-14 marginTop--10px">
-                <span>icon</span><span className='marginLeft-5px'>000</span>
-              <span className='marginLeft-10px'>icon</span><span className='marginLeft-5px'>000</span>
+              <p className="font-size-14 marginTop--10px display-flex-alignItems-center">
+                <img src="./public/images/icons/image-list.svg" alt="" srcset="" /> <span className='marginLeft-5px'>000</span>
+                <img src="./public/images/icons/heart.svg" alt="" srcset="" className='marginLeft-10px'/> <span className='marginLeft-5px'>000</span>
               </p>
             </div>
-            <div className='w-100px h-100px display-flex-center-end' onClick={handleProfileSetClick}>
-              <img className="profile-set"src="" alt="."></img></div>    
+            <div className='h-100px display-flex-center-end marginLeft-10px' onClick={handleProfileSetClick}>
+              <img className="profile-set"src="./public/images/icons/settings.svg" alt=""></img></div>    
 
 
           </div>
@@ -71,11 +68,13 @@ export default function MyPages (){
           {showPostGrid? (<UserPostGrid /> 
           ) : ( 
             <UseProfileSection 
-            userCustomName={userCustomName}
             // UserProfileSection에서 수정한 이름 반영
+            userCustomName={userCustomName}            
             onSaveUserName = {handleUserCustomName}
+            // UserProfileSection에서 수정한 프로필 사진 반영
             userProfileImage={userProfileImage}
             onSaveUserProfileImage={handleSaveProfileImage}
+            // UserProfileSection에서 수정한 배경 사진 반영
             />
             )}          
           

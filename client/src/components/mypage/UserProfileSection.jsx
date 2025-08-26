@@ -28,7 +28,7 @@ export default function UserProfileSection({userCustomName, onSaveUserName, user
       }
       reader.readAsDataURL(file)
     }else{
-      setUserSelectImage(userProfileImage) //변경 취소
+      setUserSelectImage(userProfileImage) //변경 취소시 기존으로 남음
     }
   }
 
@@ -50,8 +50,8 @@ export default function UserProfileSection({userCustomName, onSaveUserName, user
     <div className='w-100 h-300px marginTop-70px'>
         <div className="margin-15px">
           {/* 프로필 사진 변경 */}
-          <div className="h-100px  border-1px radius-10">
-              <p className='margin-10px-0 marginLeft-5px font-weight-b'>프로필 사진 변경하기</p>
+          <div className="h-60px  border-1px radius-10 display-flex-center">
+              <p className='margin-10px-0 marginLeft-15px font-weight-b'>프로필 사진 변경하기</p>
             <div className="display-flex">
                 <input type='file'
                 accept='image/*'
@@ -59,36 +59,40 @@ export default function UserProfileSection({userCustomName, onSaveUserName, user
                 onChange={handleFileChange}
                 className='hidden'>
                 </input>
-                <button
-                 onClick={() =>fileInputRef.current.click()}>사진 선택</button>
+                <button className='changeButton'
+                 onClick={() =>fileInputRef.current.click()}>
+                  <img src="./public/images/icons/image-list.svg" alt="프로필 사진 선택" />
+                 </button>
                  
-                <button
+                <button className='changeButton'
                  onClick={handleSaveProfileImageChange}
-                 disabled={!userSelectImage}>저장</button>
+                 disabled={!userSelectImage}>
+                  <img src="./public/images/icons/check.svg" alt="프로필 사진 변경 적용" />
+                 </button>
               </div>
-          </div>
+          </div>          
 
           {/* 사용자 이름 변경 */}
-            <div className="h-100px  border-1px radius-10">
-              <p className='margin-10px-0 marginLeft-5px font-weight-b'>사용자 이름</p>
-            <div className="display-flex">
+            <div className="h-60px  border-1px radius-10 marginTop-10px display-flex-center">
+              <p className='margin-10px-0 marginLeft-15px font-weight-b'>사용자 이름</p>
+            <div className="display-flex-center">
               <input type="text"
               placeholder='닉네임 설정'
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-              className='userNameInput margin-10-0px'></input>
-              <img src="" alt="icon" srcset="" onClick={handleSaveUserName} style={{ cursor: 'pointer' }}/></div>
+              className='userNameInput'></input>
+              <button className='changeButton' onClick={handleSaveUserName}><img src="./public/images/icons/check.svg" alt="icon" srcset="" /></button></div>
               </div>
 
-          <div className="h-60px border-1px radius-10 marginTop-10px">
+          <div className="h-60px border-1px radius-10 marginTop-30px">
             <div className="">
-              <p className='margin-10px-0 marginLeft-5px font-weight-b'>로그인 계정 <span className='marginLeft-5px font-weight-normal'>mmm@gmail.com</span></p>
+              <p className='margin-10px-0 marginLeft-15px font-weight-b'>로그인 계정 <span className='marginLeft-5px font-weight-normal'>mmm@gmail.com</span></p>
             </div>
           </div>
 
           <div className="h-60px border-1px radius-10 marginTop-10px">
             <div className="">
-              <p className='margin-10px-0 marginLeft-5px font-weight-b'>로그인 계정 <span className='marginLeft-5px font-weight-normal'>mmm@gmail.com</span></p>
+              <p className='margin-10px-0 marginLeft-15px font-weight-b'>로그인 계정 <span className='marginLeft-5px font-weight-normal'>mmm@gmail.com</span></p>
             </div>
           </div>
         </div>
