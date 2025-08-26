@@ -10,9 +10,8 @@ export default (mode) => {
     server: {
       proxy: {
         '/api': {
-          target,
-          changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/api/, ''), // ← /api 제거
+          target: target,
+          changeOrigin: true
         },
       },
     },
