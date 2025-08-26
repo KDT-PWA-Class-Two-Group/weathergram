@@ -1,12 +1,13 @@
+import "./App.css";
+import Weather from "./Pages/Weather";
 import Login from "./Pages/login";
-import MyPages from "./Pages/myPage";
 
 function App() {
   return (
     <div>
       <h1>Hello, World!</h1>
-      <Login />
-      <MyPages />
+      <Login/>
+      <Weather />
     </div>
   );
 }

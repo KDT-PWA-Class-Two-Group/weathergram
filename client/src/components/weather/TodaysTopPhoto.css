@@ -1,0 +1,12 @@
+.todays-top-photo-container {
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+.todays-top-photo-title {
+  font-size: 16px;
+  padding-left: 24px;
+  margin: 40px 0 0 0;
+}
