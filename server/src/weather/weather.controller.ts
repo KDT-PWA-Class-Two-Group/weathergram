@@ -10,8 +10,8 @@ export class WeatherController {
   constructor(private readonly weatherService: WeatherService) { }
 
   /**
-   * GET /weather/current?city=Daejeon&country=KR
-   * or GET /weather/current?lat=36.35&lon=127.38
+   * GET api/weather/current?city=Daejeon&country=KR
+   * or GET api/weather/current?lat=36.35&lon=127.38
    */
   @Get('current')
   async current(@Query() query: GetCurrentWeatherDto) {
@@ -19,10 +19,18 @@ export class WeatherController {
   }
 
   /**
-   * GET /weather/hourly?lat=36.35&lon=127.38&cnt=8
+   * GET api/weather/hourly?lat=36.35&lon=127.38&cnt=8
    */
   @Get('hourly')
   async hourly(@Query() query: GetHourlyForecastDto) {
     return this.weatherService.getHourlyForecast(query);
+  }
+
+  /**
+   * GET api/weather/weekly?lat=36.35&lon=127.38&cnt=5
+   */
+  @Get('weekly')
+  async weekly(@Query() query: GetWeeklyForecastDto) {
+    return this.weatherService.getWeeklyForecast(query);
   }
 }
