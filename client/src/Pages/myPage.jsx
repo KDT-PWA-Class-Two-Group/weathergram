@@ -1,4 +1,4 @@
-import './myPage.css';
+import './MyPage.css';
 import React, { useState } from 'react';
 import UseProfileSection from '../components/mypage/UserProfileSection.jsx'
 import UserPostGrid from '../components/mypage/UserPostGrid.jsx'

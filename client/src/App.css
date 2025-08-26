@@ -84,6 +84,5 @@ html, body, #root {
   min-height: 100vh;
   margin: 0 auto;
   box-sizing: border-box;
-  padding-bottom: 80px;
 	background-color: white;
 }
