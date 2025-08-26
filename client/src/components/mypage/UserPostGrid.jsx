@@ -29,9 +29,7 @@ export default function UserPostGrid(){
                   objectFit: 'cover',
                   float:'left'
                 }}>
-          <img src={post.imgUrl} alt='사용자 업로드 이미지'
-               
-            />
+          <img src={post.imgUrl} alt='사용자 업로드 이미지' />
         </div>
       ))}        
       </div>
