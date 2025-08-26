@@ -7,8 +7,10 @@ import Weather from "./Pages/Weather";
 import Login from "./Pages/Login";
 import Feed from "./Pages/Feed";
 import Upload from "./Pages/Upload";
-import MyPages from "./Pages/mypage";
+import MyPage from "./Pages/MyPage";
+
 import NotFound from "./Pages/NotFound";
+
 import Notifications from "./Pages/Notifications";
 import Settings from "./Pages/Settings";
 
@@ -25,6 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/upload" element={<Upload />} />
+            <Route path="/mypage" element={<MyPage />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
