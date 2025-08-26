@@ -26,6 +26,8 @@
 /* 디스플레이 */
 .display-flex {display: flex;}
 
+.hidden{display: none}
+
 /* 폰트 설정 */
 .font-weight-b{font-weight: 600;}
 .font-weight-normal{font-weight: normal;}

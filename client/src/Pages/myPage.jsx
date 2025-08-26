@@ -16,6 +16,12 @@ export default function MyPages (){
     setUserCustomName(newCustomName);    
   }
 
+  // 프로필 이미지 변경하기
+  const [userProfileImage, setUserProfileImage] = useState('')
+  const handleSaveProfileImage = (newImageUrl) => {
+    setUserProfileImage(newImageUrl)
+  }
+
   return(
     <div>
       <div className='w-100 display-flex-column'
@@ -33,10 +39,19 @@ export default function MyPages (){
           <div className='w-100 h-100px display-flex-alignItems-center marginTop--40px'>
             <div className="w-100px h-100px radius-50 marginLeft-10px"
             style={{
-              backgroundColor: "#fff"
+              backgroundColor: "skyblue",
+              cursor :'pointer'
             }}>
-              <img src="" alt=""
-                style={{ width: "100%"}}></img>
+              {/* 프로필 이미지 (이미지가 없을시 배경색만 보임) */}
+              {userProfileImage ?(
+                <img src={userProfileImage}
+                alt="사용자 지정 프로필 사진"
+                style={{ width: "100%", height: "100%", objectFit: "cover"}}
+                onError={(e) => {e.target.onerror = null; e.target.src = '';}} /> //이미지 로드 실패시 배경색(하늘색)이 보임
+                ): (
+                  null
+                )}
+              
               </div>
             
             <div className="w-160px h-70px marginLeft-10px marginTop-30px">
@@ -59,6 +74,8 @@ export default function MyPages (){
             userCustomName={userCustomName}
             // UserProfileSection에서 수정한 이름 반영
             onSaveUserName = {handleUserCustomName}
+            userProfileImage={userProfileImage}
+            onSaveUserProfileImage={handleSaveProfileImage}
             />
             )}          
           
