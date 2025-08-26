@@ -1,10 +1,10 @@
 const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8080';
 
-export const handleSave = async ({ id, pw }) => {
-  const userData = { id, pw };
+export const handleSave = async ({ userId, password }) => {
+  const userData = { userId, password };
 
   try {
-    const res = await fetch(`${API_BASE}/save`, {
+    const res = await fetch(`${API_BASE}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
@@ -15,9 +15,9 @@ export const handleSave = async ({ id, pw }) => {
     }
 
     const result = await res.json();
-    alert(result.message || "회원 데이터 json 저장완료");
+    alert(result.message || "회원 데이터  저장완료");
   } catch (error) {
     console.error(error);
-    alert("json 저장 중 오류가 발생했습니다.");
+    alert("저장 중 오류가 발생했습니다.");
   }
 };

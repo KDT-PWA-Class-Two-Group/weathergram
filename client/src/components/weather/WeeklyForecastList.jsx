@@ -14,18 +14,18 @@ const sampleData = [
 
 function getWeatherIconUrl(weather) {
   switch (weather) {
-    case 'clear':
-      return '/images/wea-ico/clear.svg';
-    case 'clouds':
-      return '/images/wea-ico/clouds.svg';
-    case 'rain':
-      return '/images/wea-ico/rain.svg';
-    case 'snow':
-      return '/images/wea-ico/snow.svg';
-    case 'thunderstorm':
-      return '/images/wea-ico/thunderstorm.svg';
+    case "clear":
+      return "/images/wea-ico/clear.svg";
+    case "clouds":
+      return "/images/wea-ico/clouds.svg";
+    case "rain":
+      return "/images/wea-ico/rain.svg";
+    case "snow":
+      return "/images/wea-ico/snow.svg";
+    case "thunderstorm":
+      return "/images/wea-ico/thunderstorm.svg";
     default:
-      return '/images/wea-ico/cloudy.svg';
+      return "/images/wea-ico/cloudy.svg";
   }
 }
 
@@ -35,12 +35,17 @@ function WeeklyForecastList({ data = sampleData }) {
       <div className="weekly-forecast-title">주간 예보</div>
       <div className="weekly-forecast-table">
         {data.map((item, idx) => (
-          <div key={idx} className={`weekly-forecast-row${idx !== data.length - 1 ? '' : ' last'}`}>
+          <div
+            key={idx}
+            className={`weekly-forecast-row${
+              idx !== data.length - 1 ? "" : " last"
+            }`}
+          >
             <div className="weekly-forecast-day">{item.day}</div>
             <div className="weekly-forecast-info">
               <div className="weekly-forecast-icon">
-              <img src={getWeatherIconUrl(item.weather)} alt={item.weather} />
-            </div>
+                <img src={getWeatherIconUrl(item.weather)} alt={item.weather} />
+              </div>
               <span className="weekly-forecast-min">{item.min}°C /</span>
               <span className="weekly-forecast-max">{item.max}°C</span>
             </div>
