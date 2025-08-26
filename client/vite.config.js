@@ -12,8 +12,8 @@ export default (mode) => {
         '/api': {
           target: target,
           changeOrigin: true
-        },
+        }
       },
-    },
+    }, 
   });
 };

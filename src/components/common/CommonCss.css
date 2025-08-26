@@ -1,0 +1,83 @@
+/* 너비 높이 값 */
+.w-100p {width: 100%;}
+.h-100p {height: 100%;}
+
+.h-320px {height: 320px;}
+
+.w-45px {width: 45px;}
+.h-45px {height: 45px;} 
+
+.w-350px {width: 350px;}
+.min-h-48px {min-height: 48px;}
+.aspect-square {aspect-ratio: 1/1;}
+
+/* 둥글기 */
+.rounded-16 {border-radius: 16px;}
+.rounded-full {border-radius: 50%;}
+
+/* flex 레이아웃 */
+.display-flex {display: flex;}
+.flex-col {flex-direction: column;}
+.flex-row {flex-direction: row;}
+
+.ali-items-s {align-items: flex-start;}
+.ali-items-c {align-items: center;}
+
+.gap-16 {gap: 16px;}
+
+/* 패딩 */
+.padding-16 {padding: 24px;}
+.padding-24 {padding: 24px;}
+
+.padding-b-10 {padding-bottom: 10px;}
+
+.padding-x-16 {padding-left: 16px; padding-right: 16px;}
+.padding-t-12 {padding-top: 12px;}
+
+.padding-t-10 {padding-top: 10px;}
+.padding-x-4 {padding-left: 4px; padding-right: 4px;}
+.padding-y-6 {padding-top: 6px; padding-bottom: 6px;}
+.padding-y-1 {padding-top: 4px; padding-bottom: 4px;}
+
+/* 마진 */
+.mx-auto {margin-left: auto; margin-right: auto;}
+.my-24 {margin-top: 24px; margin-bottom: 24px;}
+
+.ml-12 {margin-left: 12px;}
+
+.mt-1 {margin-top: 4px;}
+.mt-0-5 {margin-top: 2px;}
+
+/* 선/배경 */
+.border-g {border: 1px solid #d9d9d9;}
+
+.bg-white {background: #fff;}
+
+
+.bg-gray-50 {background: #fafafa;}
+
+/* 그림자 */
+.shadow-md {box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
+
+
+/* 폰트/텍스트 */
+.font-sans {font-family: 'Segoe UI', 'Apple SD Gothic Neo', Arial, sans-serif;}
+
+.font-n {font-weight: 400;}
+.font-b {font-weight: 600;}
+
+
+.text-base {font-size: 1.05rem;}
+.text-sm {font-size: 0.92rem;}
+.text-xl {font-size: 1.4rem;}
+.text-gray-900 {color: #222;}
+.text-gray-500 {color: #888;}
+.line-tight {line-height: 1.2;}
+
+/* 기타 */
+.cursor-pointer {cursor: pointer;}
+.transition {transition: transform 0.3s;}
+
+
+
+.overflow-h {overflow: hidden;}

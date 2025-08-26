@@ -1,0 +1,45 @@
+.bottomnav {
+  width: 100%;
+  max-width: 440px;
+  height: 60px;
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 100;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.bottomnav a {
+  flex: 1;
+  text-align: center;
+  color: #888;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.bottomnav a.active, .bottomnav a:hover {
+  color: #4f8cff;
+}
+.bottomnav-icon img{
+  width: 32px;
+  height: 32px;
+  display: flex;
+  filter: brightness(50%);
+}
+.bottomnav a.active img {
+  transition: 0.3s;
+  filter: invert(41%) sepia(99%) saturate(1812%) hue-rotate(186deg) brightness(97%) contrast(101%);
+}
+.bottomnav-label {
+  font-size: 14px;
+}

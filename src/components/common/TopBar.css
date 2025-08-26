@@ -1,0 +1,40 @@
+.topbar {
+  max-width: 440px;
+  height: 68px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 20px;
+}
+/* .topbar-title  */
+.topbar-title img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.topbar-location {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #555;
+}
+
+/* 아이콘 */
+.topbar-actions {
+  display: flex;
+  gap: 18px;
+}
+.topbar-actions a img{
+  display: flex;
+  width: 28px;
+  height: 28px;
+}
+.topbar-actions a img:hover{
+  transition: 0.3s;
+  filter: invert(41%) sepia(99%) saturate(1812%) hue-rotate(186deg) brightness(97%) contrast(101%);
+}
