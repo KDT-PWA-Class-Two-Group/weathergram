@@ -10,6 +10,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  min-height: 150px;
 }
 .weather-main-info {
   display: flex;
@@ -31,7 +32,8 @@
   font-size: 20px;
 }
 .weather-icon {
-  font-size: 48px;
+  width: 140px;
+  
 }
 .weather-detail-row {
   display: flex;

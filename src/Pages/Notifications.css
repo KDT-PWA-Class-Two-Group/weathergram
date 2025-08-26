@@ -1,0 +1,86 @@
+/* 알림 페이지 스타일 */
+.notifications-container {
+  max-width: 400px;
+  margin: 0 24px;
+  padding: 24px 0 0 0;
+}
+.notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-bottom: 24px;
+}
+/* 모두 읽기 버튼 */
+.notifications-markall-btn {
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.notifications-markall-btn:hover {
+  background: #2563eb;
+}
+
+/* 알림 리스트 설정 */
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.notification-item {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  color: #222;
+  box-shadow: 0 1px 4px #0001;
+  transition: background 0.2s;
+}
+.notification-item.unread {
+  font-weight: 600;
+  background: #f8f8fa;
+  border-color: #cdccd1;
+}
+.notification-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.icon-filter-red {
+  filter: invert(32%) sepia(99%) saturate(7492%) hue-rotate(-8deg) brightness(97%) contrast(110%);
+}
+.icon-filter-blue {
+  filter: invert(41%) sepia(99%) saturate(1812%) hue-rotate(186deg) brightness(97%) contrast(101%);
+}
+
+
+.notification-thumb {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e0e7ef;
+  margin-left: 8px;
+}
+.notification-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.notification-time {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
