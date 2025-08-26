@@ -60,8 +60,12 @@ function normalizeWeeklyList(list, timezone) {
 // 날씨 상태 문자열에 따른 아이콘 이미지 URL을 반환하는 함수
 // 상대 경로로 SVG 아이콘 경로 반환
 function getWeatherIconUrl(weather) {
+<<<<<<< HEAD
   const key = (weather || "").toString().trim().toLowerCase();
   switch (key) {
+=======
+  switch (weather) {
+>>>>>>> myjin0806/issue25
     case "clear":
       return "/images/wea-ico/clear.svg";
     case "clouds":
@@ -73,7 +77,10 @@ function getWeatherIconUrl(weather) {
     case "thunderstorm":
       return "/images/wea-ico/thunderstorm.svg";
     default:
+<<<<<<< HEAD
       // 알 수 없거나 기타 날씨 상태에 대한 기본 아이콘
+=======
+>>>>>>> myjin0806/issue25
       return "/images/wea-ico/cloudy.svg";
   }
 }
@@ -208,6 +215,7 @@ function WeeklyForecastList({ data, lat, lon, city, country, days = 5 }) {
       {error && <div className="weekly-forecast-error">{error}</div>}
       {/* 예보 행들을 감싸는 컨테이너 */}
       <div className="weekly-forecast-table">
+<<<<<<< HEAD
         {/* 각 아이템을 행으로 매핑하여 렌더링 */}
         {items.map((item, idx) => (
           <div
@@ -217,10 +225,20 @@ function WeeklyForecastList({ data, lat, lon, city, country, days = 5 }) {
             }`}
           >
             {/* 요일 표시 */}
+=======
+        {data.map((item, idx) => (
+          <div
+            key={idx}
+            className={`weekly-forecast-row${
+              idx !== data.length - 1 ? "" : " last"
+            }`}
+          >
+>>>>>>> myjin0806/issue25
             <div className="weekly-forecast-day">{item.day}</div>
             {/* 날씨 정보: 아이콘, 최저/최고 온도, 강수 확률 */}
             <div className="weekly-forecast-info">
               <div className="weekly-forecast-icon">
+<<<<<<< HEAD
                 {/* 날씨 아이콘 이미지 및 alt 텍스트 */}
                 <img
                   src={getWeatherIconUrl(item.weather)}
@@ -235,6 +253,12 @@ function WeeklyForecastList({ data, lat, lon, city, country, days = 5 }) {
               {typeof item.pop === "number" && (
                 <span className="weekly-forecast-pop">{item.pop}%</span>
               )}
+=======
+                <img src={getWeatherIconUrl(item.weather)} alt={item.weather} />
+              </div>
+              <span className="weekly-forecast-min">{item.min}°C /</span>
+              <span className="weekly-forecast-max">{item.max}°C</span>
+>>>>>>> myjin0806/issue25
             </div>
           </div>
         ))}
@@ -243,5 +267,9 @@ function WeeklyForecastList({ data, lat, lon, city, country, days = 5 }) {
   );
 }
 
+<<<<<<< HEAD
 // 컴포넌트를 기본 내보내기
 export default WeeklyForecastList;
+=======
+export default WeeklyForecastList;
+>>>>>>> myjin0806/issue25
