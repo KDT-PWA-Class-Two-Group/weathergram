@@ -1,16 +1,5 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Weather from "./Pages/Weather";
-<<<<<<< HEAD
-import Login from "./Pages/login";
-
-function App() {
-  return (
-    <div>
-      <h1>Hello, World!</h1>
-      <Login/>
-      <Weather />
-=======
 import Feed from "./Pages/Feed";
 import Notifications from "./Pages/Notifications";
 import Settings from "./Pages/Settings";
@@ -38,7 +27,6 @@ function App() {
           <BottomNav />
         </div>
       </BrowserRouter>
->>>>>>> 0de35b9298704f81309277c62b6a2d15cf00bef0
     </div>
   );
 }
