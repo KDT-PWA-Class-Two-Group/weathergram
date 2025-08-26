@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import "./BottomNav.css";
 
 const navs = [
-  { to: "/", label: "피드", icon: "🏠" },
-  { to: "/weather", label: "날씨", icon: "🌦️" },
-  { to: "/upload", label: "업로드", icon: "➕" },
-  { to: "/notifications", label: "알림", icon: "🔔" },
-  { to: "/settings", label: "설정", icon: "⚙️" },
+  { to: "/", label: "날씨", icon: "sun" },
+  { to: "/feed", label: "피드", icon: "image-list" },
+  { to: "/upload", label: "업로드", icon: "plus-circle" },
+  { to: "/mypage", label: "마이페이지", icon: "profile" },
 ];
 
 function BottomNav() {
@@ -20,7 +19,9 @@ function BottomNav() {
           to={nav.to}
           className={location.pathname === nav.to ? "active" : ""}
         >
-          <span className="bottomnav-icon">{nav.icon}</span>
+          <span className="bottomnav-icon">
+            <img src={`/images/icons/${nav.icon}.svg`} alt={nav.label} />
+          </span>
           <span className="bottomnav-label">{nav.label}</span>
         </Link>
       ))}

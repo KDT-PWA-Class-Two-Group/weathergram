@@ -12,21 +12,23 @@ import BottomNav from "./components/common/BottomNav";
 
 function App() {
   return (
-    <BrowserRouter>
-      <TopBar />
-      <div style={{ paddingBottom: 60, minHeight: 'calc(100vh - 56px)' }}>
-        <Routes>
-          <Route path="/" element={<Weather />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
-      <BottomNav />
-    </BrowserRouter>
+    <div className="root">
+      <BrowserRouter>
+        <div className="overlay">
+          <TopBar />
+          <Routes>
+            <Route path="/" element={<Weather />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <BottomNav />
+        </div>
+      </BrowserRouter>
+    </div>
   );
 }
 

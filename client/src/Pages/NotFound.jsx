@@ -8,20 +8,9 @@ const NotFoundPage = () => {
     navigate("/");
   };
 
-  return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>404</h1>
-      <p style={styles.message}>페이지를 찾을 수 없어요 🥲</p>
-      <button style={styles.button} onClick={goHome}>
-        홈으로 돌아가기
-      </button>
-    </div>
-  );
-};
-
-const styles = {
+  const styles = {
   container: {
-    height: "100vh",
+    height: "calc(100vh - 130px)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -49,6 +38,17 @@ const styles = {
     cursor: "pointer",
     transition: "0.3s",
   },
+};
+
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.title}>404</h1>
+      <p style={styles.message}>페이지를 찾을 수 없어요 🥲</p>
+      <button style={styles.button} onClick={goHome}>
+        홈으로 돌아가기
+      </button>
+    </div>
+  );
 };
 
 export default NotFoundPage;
