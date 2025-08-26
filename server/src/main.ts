@@ -3,6 +3,7 @@ import { AppModule } from './app.module'
 import helmet from 'helmet'
 import { ConfigService } from '@nestjs/config'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+import cookieParser from 'cookie-parser'
 import { ValidationPipe } from '@nestjs/common'
 
 async function bootstrap() {
@@ -13,6 +14,7 @@ async function bootstrap() {
   app.use(helmet())
   app.setGlobalPrefix('api') 
 
+  app.use(cookieParser());
   // CORS: .env에서 CLIENT_URL 가져오기
   app.enableCors({
     origin: [configService.get<string>('CLIENT_URL')],
@@ -26,6 +28,9 @@ async function bootstrap() {
       transform: true, // 요청 데이터를 DTO로 변환
     }),
   )
+
+
+
 
   // Swagger 설정
   const swaggerConfig = new DocumentBuilder()
