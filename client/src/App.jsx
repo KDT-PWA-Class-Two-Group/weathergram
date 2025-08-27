@@ -12,8 +12,6 @@ import NotFound from "./Pages/NotFound";
 import Notifications from "./Pages/Notifications";
 import Settings from "./Pages/Settings";
 
-
-
 function App() {
   return (
     <div className="root">
