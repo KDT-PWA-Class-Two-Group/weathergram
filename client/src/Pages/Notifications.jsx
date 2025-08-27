@@ -1,47 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Notifications.css";
 
-// 예시 알림 데이터
-const initialNotifications = [
-  {
-    id: 4,
-    type: "like",
-    content: "회원님의 사진에 새로운 좋아요가 추가되었습니다.",
-    time: "2분 전",
-    unread: true,
-    thumbnail: "/images/wea-ico/clear.svg",
-  },
-  {
-    id: 3,
-    type: "weather",
-    content: "오후에 비 소식이 있어요. 우산을 챙기세요!",
-    time: "1시간 전",
-    unread: true,
-  },
-  {
-    id: 2,
-    type: "weather",
-    content: "오늘은 미세먼지가 나쁨입니다. 마스크를 착용하세요.",
-    time: "어제",
-    unread: false,
-  },
-  {
-    id: 1,
-    type: "like",
-    content: "회원님의 사진에 새로운 좋아요가 추가되었습니다.",
-    time: "2일전",
-    unread: false,
-    thumbnail: "/images/wea-ico/clouds.svg",
-  },
-];
+function Notifications({ notifications, markAsRead, markAllAsRead }) {
 
-function Notifications() {
-  const [notifications, setNotifications] = useState(initialNotifications);
-
-  // 전체 알림 읽음 처리
-  const handleMarkAll = () => {
-    setNotifications((prev) => prev.map((n) => ({ ...n, unread: false })));
-  };
 
   // 알림별 아이콘
   const getIcon = (type) => {
@@ -54,22 +15,34 @@ function Notifications() {
 
   return (
     <div className="notifications-container">
+      {/* 모두 확인 버튼 */}
       <div className="notifications-header">
-        <button className="notifications-markall-btn" onClick={handleMarkAll}>
+        <button className="notifications-markall-btn" onClick={markAllAsRead}>
           모두 확인
         </button>
       </div>
+
+      {/* 알림 리스트 */}
       <div className="notification-list">
         {notifications.length === 0 ? (
           <div style={{ color: '#888', textAlign: 'center', padding: '32px 0' }}>알림이 없습니다.</div>
         ) : (
           notifications.map((n) => (
-            <div key={n.id} className={`notification-item${n.unread ? ' unread' : ''}`}>
+            <div
+              key={n.id}
+              className={`notification-item${n.unread ? ' unread' : ''}`}
+              onClick={() => markAsRead(n.id)} // 클릭 시 읽음 처리
+            >
+              {/* 알림 아이콘 */}
               <div className="notification-icon">{getIcon(n.type)}</div>
+
+              {/* 내용 + 시간 */}
               <div className="notification-content">
                 <span>{n.content}</span>
                 <span className="notification-time">{n.time}</span>
               </div>
+
+              {/* 좋아요 타입이면 썸네일 표시 */}
               {n.type === 'like' && n.thumbnail && (
                 <img src={n.thumbnail} alt="썸네일" className="notification-thumb" />
               )}

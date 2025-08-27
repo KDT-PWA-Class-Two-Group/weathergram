@@ -29,6 +29,9 @@
   display: flex;
   gap: 18px;
 }
+.topbar-actions a {
+  position: relative;
+}
 .topbar-actions a img{
   display: flex;
   width: 28px;
@@ -37,4 +40,20 @@
 .topbar-actions a img:hover{
   transition: 0.3s;
   filter: invert(41%) sepia(99%) saturate(1812%) hue-rotate(186deg) brightness(97%) contrast(101%);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff3b30;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
