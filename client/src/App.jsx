@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 import TopBar from "./components/common/TopBar";
-import Login from "./Pages/Login";
+import Login from "./Pages/Login.jsx";
 import Feed from "./Pages/Feed";
 import Upload from "./Pages/Upload";
 import Notifications from "./Pages/Notifications";
