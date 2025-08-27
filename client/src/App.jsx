@@ -22,16 +22,18 @@ function App() {
       <BrowserRouter>
         <div className="overlay">
           <TopBar />
-          <Routes>
-            <Route path="/" element={<Weather />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/feed" element={<Feed />} />
-            <Route path="/upload" element={<Upload />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Weather />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/feed" element={<Feed />} />
+              <Route path="/upload" element={<Upload />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
           <BottomNav />
         </div>
       </BrowserRouter>
