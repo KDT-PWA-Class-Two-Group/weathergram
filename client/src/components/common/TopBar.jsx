@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./TopBar.css";
 
-function TopBar() {
+function TopBar({ notifications }) {
   const [locationName, setLocationName] = useState("위치 확인 중...");
   const location = useLocation();
+  const unreadCount = notifications.filter(n => n.unread).length;
+  const displayCount = unreadCount > 99 ? "99+" : unreadCount;
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -43,6 +45,7 @@ function TopBar() {
       <nav className="topbar-actions">
         <Link to="/notifications" className={location.pathname === "/notifications" ? "active" : ""}>
             <img src="/images/icons/bell.svg" alt="알림 이미지" />
+            {unreadCount > 0 && <span className="notification-badge">{displayCount}</span>}
         </Link>
         <Link to="/settings" className={location.pathname === "/settings" ? "active" : ""}>
             <img src="/images/icons/settings.svg" alt="설정 이미지" />
