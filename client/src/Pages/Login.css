@@ -8,6 +8,7 @@
 
 .login-card {
   width: 400px;
+  height: 590px;
   border: 1px solid #505050;
   border-radius: 12px;
   background: #fff;
@@ -81,4 +82,8 @@
   font-size: 14px;
   color: #555;
   text-align: center;
+}
+
+.login-button outline {
+  
 }
