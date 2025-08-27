@@ -1,9 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { handleSave } from "../api/user";
 
 export default function Login() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      await handleSave({ userId: id, password: pw });
+      navigate("/main");
+    } catch (error) {
+      console.error("로그인 처리 중 오류 발생:", error);
+      alert("로그인 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <div>
@@ -68,7 +80,7 @@ export default function Login() {
           }}
         />
         <button
-          onClick={() => handleSave({ userId: id, password: pw })}
+          onClick={handleLogin}
           style={{
             width: "100%",
             padding: "12px",
@@ -81,7 +93,7 @@ export default function Login() {
             cursor: "pointer",
           }}
         >
-          가입하기
+          로그인
         </button>
       </div>
     </div>

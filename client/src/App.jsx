@@ -19,8 +19,8 @@ function App() {
         <div className="overlay">
           <TopBar />
           <Routes>
-            <Route path="/" element={<Weather />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/main" element={<Weather />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/notifications" element={<Notifications />} />
