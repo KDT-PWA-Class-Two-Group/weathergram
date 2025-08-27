@@ -5,10 +5,13 @@ import "./PostCard.css";
 function PostCard({
   postId,
   userProfile,
-  username= "그린컴퓨터아카데미",
-  location= "둔산동",
+  username = "그린컴퓨터아카데미",
+  location = "둔산동",
   postImg,
-  initialLikesCount = 0
+  content = "",
+  createdAt,
+  updatedAt,
+  initialLikesCount = 0,
 }) {
   // 로컬스토리지에서 좋아요 상태/카운트 관리
   const [liked, setLiked] = useState(false);
@@ -25,8 +28,8 @@ function PostCard({
 
   const handleLike = () => {
     // 좋아요 상태 토글
-    const likedPosts = JSON.parse(localStorage.getItem("likedPosts") || "{}" );
-    const likesData = JSON.parse(localStorage.getItem("likesCount") || "{}" );
+    const likedPosts = JSON.parse(localStorage.getItem("likedPosts") || "{}");
+    const likesData = JSON.parse(localStorage.getItem("likesCount") || "{}");
     let newLiked = !liked;
     let newCount = likesCount;
     if (newLiked) {
@@ -47,7 +50,11 @@ function PostCard({
     <div className="post-card">
       <div className="card-header">
         <div className="card-profile">
-          <img src={userProfile} alt="유저 프로필 사진" />
+          {userProfile ? (
+            <img src={userProfile} alt="유저 프로필 사진" />
+          ) : (
+            <div className="avatar avatar--placeholder" />
+          )}
         </div>
         <div className="card-user-info">
           <span className="font">{username}</span>
@@ -55,7 +62,11 @@ function PostCard({
         </div>
       </div>
       <div className="card-img-area">
-        <img className="card-img" src={postImg} alt="업로드 사진" />
+        {postImg ? (
+          <img className="card-img" src={postImg} alt="업로드 사진" />
+        ) : (
+          <div className="card-img card-img--placeholder">사진 준비중</div>
+        )}
       </div>
       <div className="card-actions">
         <span
@@ -68,6 +79,20 @@ function PostCard({
           {liked ? "❤️" : "🤍"}
         </span>
         <div className="card-likes">{likesCount}</div>
+      </div>
+      <div className="card-caption">{content}</div>
+      <div className="card-meta">
+        {createdAt && (
+          <span className="created-at">
+            작성: {new Date(createdAt).toLocaleString()}
+          </span>
+        )}
+        {updatedAt && updatedAt !== createdAt && (
+          <span className="updated-at">
+            {" "}
+            · 수정: {new Date(updatedAt).toLocaleString()}
+          </span>
+        )}
       </div>
     </div>
   );

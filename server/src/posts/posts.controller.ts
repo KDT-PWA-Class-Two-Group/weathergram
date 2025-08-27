@@ -1,5 +1,5 @@
 import { Controller, Get, Post as HttpPost, Param, Patch, Delete, Query, Body, ParseIntPipe } from '@nestjs/common';
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiTags, ApiConsumes, ApiBody } from '@nestjs/swagger';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -10,6 +10,16 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @HttpPost()
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        content: { type: 'string' },
+      },
+      required: ['content'],
+    },
+  })
   @ApiOperation({ summary: '게시글 생성', description: '텍스트만 게시글 작성' })
   create(@Body() dto: CreatePostDto) {
     return this.postsService.create(dto);

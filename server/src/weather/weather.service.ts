@@ -63,11 +63,7 @@ export class WeatherService {
       return mapped;
     } catch (e: any) {
       const status = e?.response?.status ?? 500;
-<<<<<<< HEAD
       const message = e?.response?.data ?? 'API 현재 날씨 오류';
-=======
-      const message = e?.response?.data ?? 'OpenWeather current weather error';
->>>>>>> myjin0806/issue25
       throw new HttpException(message, status);
     }
   }
@@ -90,7 +86,6 @@ export class WeatherService {
       return this.mapHourlyForecast(data);
     } catch (e: any) {
       const status = e?.response?.status ?? 500;
-<<<<<<< HEAD
       const message = e?.response?.data ?? 'API 시간별 예보 오류';
       throw new HttpException(message, status);
     }
@@ -130,9 +125,6 @@ export class WeatherService {
     } catch (e: any) {
       const status = e?.response?.status ?? 500;
       const message = e?.response?.data ?? 'API 주간 예보 오류';
-=======
-      const message = e?.response?.data ?? 'OpenWeather hourly forecast error';
->>>>>>> myjin0806/issue25
       throw new HttpException(message, status);
     }
   }
@@ -188,7 +180,6 @@ export class WeatherService {
     };
   }
 
-<<<<<<< HEAD
   private normalizeWeather(main: string) {
     const m = (main || 'Clouds').toLowerCase();
     if (m.includes('clear')) return 'Clear';
@@ -265,8 +256,6 @@ export class WeatherService {
     return daily.slice(0, Math.min(Math.max(limitDays ?? 5, 1), 5));
   }
 
-=======
->>>>>>> myjin0806/issue25
   /** Reverse Geocoding으로 한글 도시명 조회 (없으면 null) */
   private async getKoreanCityName(lat: number, lon: number): Promise<string | null> {
     const url = `${this.baseUrl}/geo/1.0/reverse`;
@@ -286,8 +275,4 @@ export class WeatherService {
       return null; // 실패해도 영문명으로 fallback
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> myjin0806/issue25
