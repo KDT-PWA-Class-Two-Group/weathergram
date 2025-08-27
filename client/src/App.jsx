@@ -11,6 +11,13 @@ import MyPages from "./Pages/mypage";
 import NotFound from "./Pages/NotFound";
 import Notifications from "./Pages/Notifications";
 import Settings from "./Pages/Settings";
+import Upload from "./Pages/Upload";
+import Login from "./Pages/Login";
+import NotFound from "./Pages/NotFound";
+import TopBar from "./components/common/TopBar";
+import BottomNav from "./components/common/BottomNav";
+import Weather from "./Pages/Weather.jsx";
+import MyPage from "./Pages/myPage.jsx";
 
 function App() {
   return (
@@ -25,7 +32,7 @@ function App() {
             <Route path="/upload" element={<Upload />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
           <BottomNav />
         </div>

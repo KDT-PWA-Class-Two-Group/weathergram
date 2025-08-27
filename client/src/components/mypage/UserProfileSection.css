@@ -1,22 +1,25 @@
 /* 가로 세로 크기 */
 .w-100 {width: 100%;}
 
+.w-100px {width: 100px;}
+
 .h-60px {height: 60px;}
-.h-100px {height: 100px;}
 
 .h-300px {height: 300px;}
 
 .radius-10 {border-radius: 10px;}
 
 /* 테두리 설정 */
-.border-1px {border: 1px solid #333;
+.border-1px {border: 1px solid #DDD;
                   box-sizing: border-box;}
 
 /* 마진, 패딩 */
 .marginTop-10px {margin-top: 10px;}
+.marginTop-30px {margin-top: 30px;}
 .marginTop-70px {margin-top: 70px;}
 
-.marginLeft-5px {margin-left: 5px;}
+.marginLeft-15px {margin-left:15px;}
+.marginLeft-30px {margin-left:30px;}
 
 .margin-15px {margin: 15px;}
 
@@ -24,7 +27,11 @@
 .margin-10-0px {margin: 0 10px;}
 
 /* 디스플레이 */
-.display-flex {display: flex;}
+.display-flex {display: flex;
+  align-items: center;}
+.display-flex-center {display: flex;
+  align-items: center;
+justify-content: space-between;}
 
 .hidden{display: none}
 
@@ -32,14 +39,27 @@
 .font-weight-b{font-weight: 600;}
 .font-weight-normal{font-weight: normal;}
 
+/* 프로필 사진 변경 버튼 */
+.changeButton{width: 30px;
+          height: 30px;
+          border: none;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 10px;
+          cursor: pointer;
+  }
                 
 /* 사용자 이름 변경 인풋 */
-.userNameInput{width: 300px;
+.userNameInput{width: 150px;
           height: 30px;
+          color: #333;
           background-color: transparent;
           border: none;
           border-bottom: 1px solid #333;
           box-sizing: border-box;
           outline: none;
-          font-size: 16px;}
+          font-size: 16px;
+          margin-top: -10px;}
 
