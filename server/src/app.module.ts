@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { UsersModule } from './users/users.module'
-import { PhotosModule } from './photos/photos.module'
+import { PostsModule } from './posts/posts.module'
 import { WeatherModule } from './weather/weather.module'
 
 @Module({
@@ -29,7 +29,7 @@ import { WeatherModule } from './weather/weather.module'
     }),
     // 모듈 등록 하는 곳
     UsersModule,
-    PhotosModule,
+    PostsModule,
     WeatherModule
   ],
 })

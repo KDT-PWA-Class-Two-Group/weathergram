@@ -1,13 +1,16 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Feed from "./Pages/Feed";
-import Notifications from "./Pages/Notifications";
-import Settings from "./Pages/Settings";
-import Upload from "./Pages/Upload";
-import Login from "./Pages/Login";
-import NotFound from "./Pages/NotFound";
+
 import TopBar from "./components/common/TopBar";
 import BottomNav from "./components/common/BottomNav";
+import Weather from "./Pages/Weather";
+import Login from "./Pages/Login";
+import Feed from "./Pages/Feed";
+import Upload from "./Pages/Upload";
+import MyPages from "./Pages/mypage";
+import NotFound from "./Pages/NotFound";
+import Notifications from "./Pages/Notifications";
+import Settings from "./Pages/Settings";
 
 function App() {
   return (
