@@ -10,7 +10,7 @@
 .radius-10 {border-radius: 10px;}
 
 /* 테두리 설정 */
-.border-1px {border: 1px solid #333;
+.border-1px {border: 1px solid #DDD;
                   box-sizing: border-box;}
 
 /* 마진, 패딩 */
@@ -54,6 +54,7 @@ justify-content: space-between;}
 /* 사용자 이름 변경 인풋 */
 .userNameInput{width: 150px;
           height: 30px;
+          color: #333;
           background-color: transparent;
           border: none;
           border-bottom: 1px solid #333;

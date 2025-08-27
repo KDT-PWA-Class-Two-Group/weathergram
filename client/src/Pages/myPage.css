@@ -19,6 +19,8 @@
 
 .marginTop--10px {margin-top: -10px;}
 .marginTop--40px {margin-top: -40px;}
+
+.marginTop-5px {margin-top: 5px;}
 .marginTop-30px {margin-top: 30px;}
 .marginTop-70px {margin-top: 70px;}
 
@@ -37,16 +39,20 @@
   align-items: center;
   justify-content: end;}
 
-/* 폰트 사이즈 */
+/* 폰트 사이즈, 컬러 */
 
 .font-size-16 {size: 16px;}
 .font-size-14 {size: 14px;}
 
 .font-weight-b{font-weight: 600;}
 
+
             
-/* 프로필 설정 아이콘 */
+/* 프로필 설정 아이콘, 갤러리/좋아요 총 개수 아이콘*/
 .profile-set {width: 30px;
                 height: 30px;
                 margin-Left:10px;
                 margin-top: 15px;}
+
+.profile-icon {width: 20px;
+                height: 20px;}
