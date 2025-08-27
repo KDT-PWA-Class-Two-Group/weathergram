@@ -1,3 +1,4 @@
+import "./Login.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleSave } from "../api/user";
@@ -5,7 +6,16 @@ import { handleSave } from "../api/user";
 export default function Login() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [showDirect, setShowDirect] = useState(false);
   const navigate = useNavigate();
+
+  const handleSocialLogin = (platform) => {
+    alert(`${platform} 로그인 기능은 현재 구현 중입니다.`);
+    // 실제 소셜 로그인 로직은 여기에 구현
+  };
+
+  const showDirectLogin = () => setShowDirect(true);
+  const showSocialLogin = () => setShowDirect(false);
 
   const handleLogin = async () => {
     try {
@@ -18,83 +28,81 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          width: "400px",
-          height: "470px",
-          border: "1px solid #505050",
-          borderRadius: "12px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "32px 24px",
-          boxSizing: "border-box",
-          background: "#fff",
-        }}
-      >
-        {/* 앱 로고 */}
+    <div className="login-container">
+      <div className="login-card">
         <img
-          src="/logo192.png"
+          src="/images/wg-logo.svg"
           alt="Weathergram Logo"
-          style={{ width: 64, height: 64, marginBottom: 16 }}
+          className="login-logo"
         />
-        {/* 앱 이름 */}
-        <h2 style={{ margin: 0, fontWeight: 700, fontSize: 28, color: "#222" }}>
-          Weathergram
-        </h2>
-        {/* 설명 */}
-        <p style={{ margin: "12px 0 32px 0", color: "#555", fontSize: 16 }}>
-          날씨와 함께 순간을 공유하세요
-        </p>
-        {/* 회원가입 */}
-        <input
-          type="text"
-          placeholder="아이디"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "16px",
-            border: "1px solid #ccc",
-            borderRadius: "6px",
-            fontSize: "16px",
-            boxSizing: "border-box",
-          }}
-        />
-        <input
-          type="password"
-          placeholder="패스워드"
-          value={pw}
-          onChange={(e) => setPw(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "24px",
-            border: "1px solid #ccc",
-            borderRadius: "6px",
-            fontSize: "16px",
-            boxSizing: "border-box",
-          }}
-        />
-        <button
-          onClick={handleLogin}
-          style={{
-            width: "100%",
-            padding: "12px",
-            background: "#1976d2",
-            color: "#fff",
-            border: "none",
-            borderRadius: "6px",
-            fontSize: "16px",
-            fontWeight: 700,
-            cursor: "pointer",
-          }}
-        >
-          로그인
-        </button>
+        <h2 className="login-title">Weathergram</h2>
+        <p className="login-subtitle">날씨와 함께 순간을 공유하세요</p>
+
+        {showDirect ? (
+          <>
+            <h3 className="login-section-title">계정으로 로그인</h3>
+            <input
+              type="text"
+              placeholder="아이디"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              className="login-input"
+            />
+            <input
+              type="password"
+              placeholder="비밀번호"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              className="login-input"
+            />
+            <button className="login-button" onClick={handleLogin}>
+              로그인
+            </button>
+            <button
+              type="button"
+              className="link-button back-to-social"
+              onClick={showSocialLogin}
+            >
+              ← 소셜 로그인으로 돌아가기
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="social-button google"
+              onClick={() => handleSocialLogin("Google")}
+            >
+              Google로 로그인
+            </button>
+            <button
+              className="social-button kakao"
+              onClick={() => handleSocialLogin("Kakao")}
+            >
+              Kakao로 로그인
+            </button>
+            <button
+              className="social-button naver"
+              onClick={() => handleSocialLogin("Naver")}
+            >
+              Naver로 로그인
+            </button>
+
+            <p className="login-info">
+              소셜 로그인을 통해 간편하게 가입하고
+              <br />
+              날씨와 함께하는 특별한 순간들을 공유해보세요
+            </p>
+
+            <div className="divider">또는</div>
+            <button
+              type="button"
+              className="login-button outline"
+              onClick={showDirectLogin}
+            >
+              직접 로그인
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

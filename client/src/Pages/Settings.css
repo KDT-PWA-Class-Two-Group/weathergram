@@ -1,5 +1,6 @@
 /* 공통 css */
 .settings-container {
+  padding-top: 20px;
   margin: 0 auto;
 }
 .settings-section {
@@ -81,6 +82,11 @@
 }
 .settings-toggle-list > *:last-child {
   border-bottom: none;
+}
+
+/* 계정관리 */
+.settings-section:last-child {
+  margin-bottom: 80px;
 }
 
 /* 회원 탈퇴, 로그아웃 버튼 */

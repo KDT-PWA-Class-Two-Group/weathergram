@@ -1,0 +1,84 @@
+.login-container {
+  height: calc(100vh - 130px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f4f8;
+}
+
+.login-card {
+  width: 400px;
+  border: 1px solid #505050;
+  border-radius: 12px;
+  background: #fff;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.login-logo {
+  width: 84px;
+  height: 84px;
+  margin-bottom: 16px;
+}
+
+.login-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 28px;
+  color: #222;
+}
+
+.login-subtitle {
+  margin: 12px 0 32px 0;
+  color: #555;
+  font-size: 16px;
+  text-align: center;
+}
+
+.social-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.social-button.google {
+  background-color: #db4437;
+}
+
+.social-button.google:hover {
+  background-color: #c13527;
+}
+
+.social-button.kakao {
+  background-color: #fee500;
+  color: #3c1e1e;
+}
+
+.social-button.kakao:hover {
+  background-color: #e6d500;
+}
+
+.social-button.naver {
+  background-color: #03c75a;
+}
+
+.social-button.naver:hover {
+  background-color: #02a74b;
+}
+
+.login-info {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}

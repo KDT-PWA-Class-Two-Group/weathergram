@@ -5,7 +5,7 @@ import WeeklyForecastList from "../components/weather/WeeklyForecastList";
 
 function Weather() {
   return (
-    <div className="weather-page-root">
+    <div className="weather-container">
       <WeatherInfo />
       <TodaysTopPhoto />
       <HourlyForecastList />
