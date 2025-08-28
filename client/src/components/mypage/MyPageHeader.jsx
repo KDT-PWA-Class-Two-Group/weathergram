@@ -8,7 +8,7 @@ export function MyPageHeader({userHederImage}) {
           {userHederImage ? (
             <img
               src={userHederImage}
-              alt="사용자 지정 프로필 사진"
+              alt="사용자 지정 배경 사진"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               onError={(e) => {
                 e.target.onerror = null;
