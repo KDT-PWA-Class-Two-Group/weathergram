@@ -2,12 +2,14 @@ import "./Login.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleSave } from "../api/user";
+import { googleLogin } from "../auth/googleLogin";
 
 export default function Login() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [showDirect, setShowDirect] = useState(false);
   const navigate = useNavigate();
+  onabort;
 
   const handleSocialLogin = (platform) => {
     alert(`${platform} 로그인 기능은 현재 구현 중입니다.`);
@@ -96,10 +98,7 @@ export default function Login() {
           </>
         ) : (
           <>
-            <button
-              className="social-button google"
-              onClick={() => handleSocialLogin("Google")}
-            >
+            <button className="social-button google" onClick={googleLogin}>
               Google로 로그인
             </button>
             <button

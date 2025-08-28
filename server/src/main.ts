@@ -15,7 +15,7 @@ async function bootstrap() {
 
   // CORS: .env에서 CLIENT_URL 가져오기
   app.enableCors({
-    origin: [configService.get<string>('CLIENT_URL')],
+    origin: [configService.get<string>('FRONTEND_URL')],
     credentials: true,
   })
 
