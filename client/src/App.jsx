@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { ThemeProvider } from "./context/ThemeProvider.jsx"
 
 import TopBar from "./components/common/TopBar";
 import Login from "./Pages/Login.jsx";
@@ -12,6 +13,7 @@ import NotFound from "./Pages/NotFound";
 import BottomNav from "./components/common/BottomNav";
 import Weather from "./Pages/Weather.jsx";
 import MyPages from "./Pages/myPage.jsx";
+
 
 function App() {
   // 예시 알림 데이터
@@ -48,35 +50,37 @@ function App() {
     );
 
   return (
-    <div className="root">
-      <BrowserRouter>
-        <div className="overlay">
-          <TopBar notifications={notifications} />
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/main" element={<Weather />} />
-              <Route path="/feed" element={<Feed />} />
-              <Route path="/upload" element={<Upload />} />
-              <Route path="/mypage" element={<MyPages />} />
-              <Route
-                path="/notifications"
-                element={
-                  <Notifications
-                    notifications={notifications}
-                    markAsRead={markAsRead}
-                    markAllAsRead={markAllAsRead}
-                  />
-                }
-              />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+    <ThemeProvider>
+      <div className="root">
+        <BrowserRouter>
+          <div className="overlay">
+            <TopBar notifications={notifications} />
+            <div className="content">
+              <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/main" element={<Weather />} />
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/upload" element={<Upload />} />
+                <Route path="/mypage" element={<MyPages />} />
+                <Route
+                  path="/notifications"
+                  element={
+                    <Notifications
+                      notifications={notifications}
+                      markAsRead={markAsRead}
+                      markAllAsRead={markAllAsRead}
+                    />
+                  }
+                />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+            <BottomNav />
           </div>
-          <BottomNav />
-        </div>
-      </BrowserRouter>
-    </div>
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   );
 }
 

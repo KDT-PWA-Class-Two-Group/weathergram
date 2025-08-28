@@ -4,6 +4,8 @@ import ToggleSwitch from "../components/common/ToggleSwitch";
 import Modal from "./Modal";
 import "./Settings.css";
 
+import { DarkModeToggle } from "../components/common/DarkMode";
+
 
 // 예시 공지사항 데이터
 const notices = [
@@ -29,8 +31,7 @@ function Settings() {
     night: true,
     like: true,
   });
-  // 다크모드 상태
-  const [darkMode, setDarkMode] = useState(false);
+  
   // 공지사항 아코디언 상태
   const [openNotice, setOpenNotice] = useState(null);
 
@@ -56,11 +57,6 @@ function Settings() {
       ...prev,
       [type]: checked,
     }));
-  };
-
-  // 다크모드 토글 핸들러
-  const handleDarkMode = (checked) => {
-    setDarkMode(checked);
   };
 
   // 로그아웃/계정탈퇴 모달 오픈
@@ -147,12 +143,8 @@ function Settings() {
       {/* 앱 설정 */}
       <section className="settings-section">
         <h3>앱 설정</h3>
-        <ToggleSwitch
-          label="다크모드"
-          checked={darkMode}
-          onChange={handleDarkMode}
-          description={"다크모드로 변경합니다."}
-        />
+        <DarkModeToggle
+          description={"다크모드로 변경합니다"}/>
       </section>
       {/* 계정 관리 */}
       <section className="settings-section"> 
