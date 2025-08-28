@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PostCard from "../components/common/PostCard";
 import "./FeedPage.css";
 import { fetchPosts, deletePost } from "../api/post";
+import { handleEdit } from "../components/feed/HandleEdit";
 
 function FeedPage() {
   const [posts, setPosts] = useState([]);
@@ -35,12 +36,6 @@ function FeedPage() {
       console.error("삭제 실패:", err?.response?.data || err?.message || err);
       alert("삭제 중 오류가 발생했습니다.");
     }
-  };
-
-  // 수정 핸들러 (예: 모달 열기)
-  const handleEdit = (postId) => {
-    console.log("수정 클릭:", postId);
-    // 수정 모달 띄우거나 페이지 이동 로직
   };
 
   return (
