@@ -11,7 +11,7 @@ import Settings from "./Pages/Settings";
 import NotFound from "./Pages/NotFound";
 import BottomNav from "./components/common/BottomNav";
 import Weather from "./Pages/Weather.jsx";
-import MyPages from "./Pages/MyPage.jsx";
+import MyPages from "./Pages/myPage.jsx";
 
 function App() {
   // 예시 알림 데이터
