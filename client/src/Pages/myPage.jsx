@@ -2,6 +2,7 @@ import "./MyPage.css";
 import React, { useState } from "react";
 import UseProfileSection from "../components/mypage/UserProfileSection.jsx";
 import UserPostGrid from "../components/mypage/UserPostGrid.jsx";
+import { MyPageHeader } from "../components/mypage/MyPageHeader.jsx";
 
 export default function MyPages() {
   // 설정 클릭시 프로필 설정/ 다시 클릭시 사용자 갤러리가 보임
@@ -30,9 +31,10 @@ export default function MyPages() {
 
   return (
     <div>
-      <div className="w-100 display-flex-column" style={{ height: "aotu" }}>
+      <div className="w-100 display-flex-column" style={{ height: "auto" }}>
         {/* 프로필 헤더 */}
-        <div className="w-100 h-240px" style={{ backgroundColor: "#ddd" }}>
+        <MyPageHeader userHederImage={ MyPageHeader }/>
+        {/* <div className="w-100 h-240px" style={{ backgroundColor: "#ddd" }}>
           {userHederImage ? (
             <img
               src={userHederImage}
@@ -44,7 +46,7 @@ export default function MyPages() {
               }}
             /> //이미지 로드 실패시 배경색(회색)이 보임
           ) : null}
-        </div>
+        </div> */}
 
         {/* 프로필 사진, 이름, 설정 */}
         <div className="w-100 h-100px display-flex-alignItems-center marginTop--40px">
