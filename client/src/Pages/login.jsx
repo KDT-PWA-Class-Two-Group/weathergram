@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleSave } from "../api/user";
 import { googleLogin } from "../auth/googleLogin";
+import { naverLogin } from "../auth/googleLogin";
 
 export default function Login() {
   const [id, setId] = useState("");
@@ -107,10 +108,7 @@ export default function Login() {
             >
               Kakao로 로그인
             </button>
-            <button
-              className="social-button naver"
-              onClick={() => handleSocialLogin("Naver")}
-            >
+            <button className="social-button naver" onClick={naverLogin}>
               Naver로 로그인
             </button>
 
