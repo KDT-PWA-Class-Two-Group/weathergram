@@ -2,6 +2,7 @@
 import React from "react"
 import { useTheme } from "../../context/UseTheme.jsx";
 import ToggleSwitch from "./ToggleSwitch.jsx";
+import '../../App.css'
 
 export function DarkModeToggle ({description}){
       // 다크모드 상태

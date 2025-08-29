@@ -2,8 +2,8 @@
   width: 100%;
   max-width: 440px;
   height: 60px;
-  background: #fff;
-  border-top: 1px solid #e5e5e5;
+  background: var(--bg-color-overlay);
+  border-top: var(--border-color-primary);
   display: flex;
   align-items: center;
   justify-content: space-around;

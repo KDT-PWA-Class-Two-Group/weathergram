@@ -1,5 +1,5 @@
 .hourly-forecast-list {
-  background: #fff;
+  background: var(--bg-color-waether);
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 20px;
@@ -11,7 +11,7 @@
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 12px;
-  color: #222;
+  color: var(--text-color-primary);
 }
 .hourly-forecast-row {
   display: flex;
@@ -27,7 +27,7 @@
 }
 .hourly-forecast-hour {
   font-size: 15px;
-  color: #888;
+  color: var(--text-color-waether-gray);
 }
 .hourly-forecast-icon {
   font-size: 28px;
@@ -40,7 +40,7 @@
 }
 .hourly-forecast-temp {
   font-weight: 600;
-  color: #1e90ff;
+  color: var(--text-color-waether-blue);
 }
 .hourly-forecast-pop {
   font-size: 13px;
