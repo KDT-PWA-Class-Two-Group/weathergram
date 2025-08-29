@@ -9,36 +9,36 @@ const NotFoundPage = () => {
   };
 
   const styles = {
-  container: {
-    height: "calc(100vh - 130px)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f8f8f8",
-    color: "#333",
-    textAlign: "center",
-  },
-  title: {
-    fontSize: "8rem",
-    color: "#ff6b6b",
-    margin: 0,
-  },
-  message: {
-    fontSize: "1.5rem",
-    margin: "10px 0 30px",
-  },
-  button: {
-    padding: "12px 25px",
-    backgroundColor: "#4ecdc4",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    fontWeight: "bold",
-    cursor: "pointer",
-    transition: "0.3s",
-  },
-};
+    container: {
+      height: "calc(100vh - 130px)",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#f8f8f8",
+      color: "#333",
+      textAlign: "center",
+    },
+    title: {
+      fontSize: "8rem",
+      color: "#ff6b6b",
+      margin: 0,
+    },
+    message: {
+      fontSize: "1.5rem",
+      margin: "10px 0 30px",
+    },
+    button: {
+      padding: "12px 25px",
+      backgroundColor: "#4ecdc4",
+      color: "#fff",
+      border: "none",
+      borderRadius: "5px",
+      fontWeight: "bold",
+      cursor: "pointer",
+      transition: "0.3s",
+    },
+  };
 
   return (
     <div style={styles.container}>

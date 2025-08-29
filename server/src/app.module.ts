@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { UsersModule } from './users/users.module'
 import { PostsModule } from './posts/posts.module'
 import { WeatherModule } from './weather/weather.module'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { WeatherModule } from './weather/weather.module'
     // 모듈 등록 하는 곳
     UsersModule,
     PostsModule,
-    WeatherModule
+    WeatherModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
