@@ -5,6 +5,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { NaverStrategy } from './strategies/naver.stategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 import { UsersModule } from 'src/users/users.module';
 
 @Module({
@@ -14,6 +15,6 @@ import { UsersModule } from 'src/users/users.module';
     JwtModule.register({ secret: process.env.JWT_SECRET }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, GoogleStrategy, NaverStrategy], 
+  providers: [AuthService, GoogleStrategy, NaverStrategy, JwtStrategy], 
 })
 export class AuthModule {}

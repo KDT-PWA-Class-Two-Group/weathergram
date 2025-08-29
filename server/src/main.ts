@@ -4,6 +4,7 @@ import helmet from 'helmet'
 import { ConfigService } from '@nestjs/config'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { ValidationPipe } from '@nestjs/common'
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -18,7 +19,7 @@ async function bootstrap() {
     origin: [configService.get<string>('FRONTEND_URL')],
     credentials: true,
   })
-    
+  app.use(cookieParser());
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // DTO에 정의되지 않은 필드 제거
