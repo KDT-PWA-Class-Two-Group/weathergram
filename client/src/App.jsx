@@ -75,7 +75,7 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 임시로 true로 설정
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 true로 설정
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // 테스트 중 항상 로그인 상태를 유지하려면 아래 useEffect를 주석 처리하세요.

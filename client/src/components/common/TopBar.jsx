@@ -5,7 +5,7 @@ import "./TopBar.css";
 function TopBar({ notifications }) {
   const [locationName, setLocationName] = useState("위치 확인 중...");
   const location = useLocation();
-  const unreadCount = notifications.filter(n => n.unread).length;
+  const unreadCount = notifications.filter((n) => n.unread).length;
   const displayCount = unreadCount > 99 ? "99+" : unreadCount;
 
   useEffect(() => {
@@ -21,7 +21,9 @@ function TopBar({ notifications }) {
           `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${longitude}&y=${latitude}`,
           {
             headers: {
-              Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_API_KEY}`, // 환경 변수에서 API 키 가져오기
+              Authorization: `KakaoAK ${
+                import.meta.env.VITE_REACT_APP_KAKAO_API_KEY
+              }`, // 환경 변수에서 API 키 가져오기
             },
           }
         )
@@ -43,12 +45,20 @@ function TopBar({ notifications }) {
         <span className="topbar-location">{locationName}</span>
       </div>
       <nav className="topbar-actions">
-        <Link to="/notifications" className={location.pathname === "/notifications" ? "active" : ""}>
-            <img src="/images/icons/bell.svg" alt="알림 이미지" />
-            {unreadCount > 0 && <span className="notification-badge">{displayCount}</span>}
+        <Link
+          to="/notifications"
+          className={location.pathname === "/notifications" ? "active" : ""}
+        >
+          <img src="/images/icons/bell.svg" alt="알림 이미지" />
+          {unreadCount > 0 && (
+            <span className="notification-badge">{displayCount}</span>
+          )}
         </Link>
-        <Link to="/settings" className={location.pathname === "/settings" ? "active" : ""}>
-            <img src="/images/icons/settings.svg" alt="설정 이미지" />
+        <Link
+          to="/settings"
+          className={location.pathname === "/settings" ? "active" : ""}
+        >
+          <img src="/images/icons/settings.svg" alt="설정 이미지" />
         </Link>
       </nav>
     </header>
