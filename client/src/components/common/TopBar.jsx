@@ -44,7 +44,7 @@ function TopBar({ notifications }) {
       </div>
       <nav className="topbar-actions">
         <Link to="/notifications" className={location.pathname === "/notifications" ? "active" : ""}>
-            <img src="/images/icons/bell.svg" alt="알림 이미지" />
+            <img src="/images/icons/bell.svg" alt="알림 이미지" className="app-icon"/>
             {unreadCount > 0 && <span className="notification-badge">{displayCount}</span>}
         </Link>
         <Link to="/settings" className={location.pathname === "/settings" ? "active" : ""}>

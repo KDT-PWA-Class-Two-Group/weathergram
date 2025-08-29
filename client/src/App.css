@@ -101,7 +101,11 @@ html, body, #root {
 	--text-color-toggle-switch-desc:#888;
 
 	/* TopBar 기본변수 */
-	--text-color-topbar:#555
+	--text-color-topbar:#555;
+
+	/* 아이콘 기본 변수 */
+	--icon-color-primary:#000;
+
 }
 /* 다크모드 변수 설정 */
 html.dark {
@@ -137,7 +141,10 @@ html.dark {
 	--text-color-card-likes: #888;
 
 	/* TopBar 다크모드 변수 */
-	--text-color-topbar:#b3b3b3
+	--text-color-topbar:#b3b3b3;
+	
+	/* 아이콘 다크모드 변수 */
+	--icon-color-primary:#fff;
 	
 }
 
@@ -173,4 +180,10 @@ body{
 	max-width: 440px;
 	min-height: calc(100vh - 130px);
 	margin: 0 auto;
+}
+
+/* 얩 전반 아이콘 색상 설정 */
+.app-icon{
+	color: var(--icon-color-primary);
+	transition: all 0.3s ease;
 }
