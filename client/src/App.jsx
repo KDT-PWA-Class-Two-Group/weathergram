@@ -1,6 +1,6 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import TopBar from "./components/common/TopBar";
 import Login from "./Pages/Login";
@@ -13,8 +13,65 @@ import BottomNav from "./components/common/BottomNav";
 import Weather from "./Pages/Weather.jsx";
 import MyPages from "./Pages/myPage.jsx";
 
+function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
+  const location = useLocation();
+
+  // 로그인 페이지에서는 TopBar / BottomNav 숨김
+  const isLoginPage = location.pathname === "/login";
+
+  return (
+    <div className="overlay">
+      {!isLoginPage && <TopBar notifications={notifications} />}
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Weather />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/feed"
+            element={isLoggedIn ? <Feed /> : <Navigate replace to="/login" />}
+          />
+          <Route
+            path="/upload"
+            element={isLoggedIn ? <Upload /> : <Navigate replace to="/login" />}
+          />
+          <Route
+            path="/mypage"
+            element={isLoggedIn ? <MyPages /> : <Navigate replace to="/login" />}
+          />
+          <Route
+            path="/notifications"
+            element={
+              isLoggedIn ? (
+                <Notifications notifications={notifications} markAsRead={markAsRead} markAllAsRead={markAllAsRead} />
+              ) : (
+                <Navigate replace to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/settings"
+            element={isLoggedIn ? <Settings /> : <Navigate replace to="/login" />}
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+      {!isLoginPage && <BottomNav />}
+    </div>
+  );
+}
+
 function App() {
-  // 예시 알림 데이터
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 true로 설정
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // 테스트 중 항상 로그인 상태를 유지하려면 아래 useEffect를 주석 처리하세요.
+  // 실제 구현 시에는 주석을 해제하여 토큰 기반으로 로그인 상태를 관리해야 합니다.
+  // useEffect(() => {
+  // const token = localStorage.getItem("token");
+  // setIsLoggedIn(!!token);  // 여기서 사용
+  // }, []);
+
+  // 알림 더미 데이터
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -40,6 +97,7 @@ function App() {
     },
   ]);
 
+  // 알림 읽음 처리 함수
   const markAllAsRead = () =>
     setNotifications((prev) => prev.map((n) => ({ ...n, unread: false })));
   const markAsRead = (id) =>
@@ -50,31 +108,12 @@ function App() {
   return (
     <div className="root">
       <BrowserRouter>
-        <div className="overlay">
-          <TopBar notifications={notifications} />
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/main" element={<Weather />} />
-              <Route path="/feed" element={<Feed />} />
-              <Route path="/upload" element={<Upload />} />
-              <Route path="/mypage" element={<MyPages />} />
-              <Route
-                path="/notifications"
-                element={
-                  <Notifications
-                    notifications={notifications}
-                    markAsRead={markAsRead}
-                    markAllAsRead={markAllAsRead}
-                  />
-                }
-              />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
-          <BottomNav />
-        </div>
+        <AppLayout
+          isLoggedIn={isLoggedIn}
+          notifications={notifications}
+          markAsRead={markAsRead}
+          markAllAsRead={markAllAsRead}
+        />
       </BrowserRouter>
     </div>
   );

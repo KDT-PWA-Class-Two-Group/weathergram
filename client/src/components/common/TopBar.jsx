@@ -21,7 +21,7 @@ function TopBar({ notifications }) {
           `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${longitude}&y=${latitude}`,
           {
             headers: {
-              Authorization: "KakaoAK 5cfece3ea1911aa54632ff4801fab391", // 본인 REST API 키
+              Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_API_KEY}`, // 환경 변수에서 API 키 가져오기
             },
           }
         )

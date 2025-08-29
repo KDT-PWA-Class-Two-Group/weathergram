@@ -1,34 +1,32 @@
 import "./Login.css";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { handleSave } from "../api/user";
-import { googleLogin } from "../auth/googleLogin";
-import { naverLogin } from "../auth/googleLogin";
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { handleSave } from "../api/user";
 
 export default function Login() {
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
-  const [showDirect, setShowDirect] = useState(false);
-  const navigate = useNavigate();
-  onabort;
-
   const handleSocialLogin = (platform) => {
     alert(`${platform} 로그인 기능은 현재 구현 중입니다.`);
     // 실제 소셜 로그인 로직은 여기에 구현
   };
 
-  const showDirectLogin = () => setShowDirect(true);
-  const showSocialLogin = () => setShowDirect(false);
+  // 직접 로그인 관련 상태와 함수 (현재 사용 안함)
+  // const [id, setId] = useState("");
+  // const [pw, setPw] = useState("");
+  // const [showDirect, setShowDirect] = useState(false);
+  // const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      await handleSave({ userId: id, password: pw });
-      navigate("/main");
-    } catch (error) {
-      console.error("로그인 처리 중 오류 발생:", error);
-      alert("로그인 중 오류가 발생했습니다.");
-    }
-  };
+  // const showDirectLogin = () => setShowDirect(true);
+  // const showSocialLogin = () => setShowDirect(false);
+
+  // const handleLogin = async () => {
+  //   try {
+  //     await handleSave({ userId: id, password: pw });
+  //     navigate("/main");
+  //   } catch (error) {
+  //     console.error("로그인 처리 중 오류 발생:", error);
+  //     alert("로그인 중 오류가 발생했습니다.");
+  //   }
+  // };
 
   return (
     <div className="login-container">
@@ -40,8 +38,34 @@ export default function Login() {
         />
         <h2 className="login-title">Weathergram</h2>
         <p className="login-subtitle">날씨와 함께 순간을 공유하세요</p>
+        {/* 소셜 로그인 만 */}
+        <button
+          className="social-button google"
+          onClick={() => handleSocialLogin("Google")}
+        >
+          Google로 로그인
+        </button>
+        <button
+          className="social-button kakao"
+          onClick={() => handleSocialLogin("Kakao")}
+        >
+          Kakao로 로그인
+        </button>
+        <button
+          className="social-button naver"
+          onClick={() => handleSocialLogin("Naver")}
+        >
+          Naver로 로그인
+        </button>
 
-        {showDirect ? (
+        <p className="login-info">
+          소셜 로그인을 통해 간편하게 가입하고
+          <br />
+          날씨와 함께하는 특별한 순간들을 공유해보세요
+        </p>
+
+        {/* 직접 로그인 폼 */}
+        {/* {showDirect ? (
           <>
             <input
               type="text"
@@ -127,7 +151,7 @@ export default function Login() {
               직접 로그인
             </button>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );
