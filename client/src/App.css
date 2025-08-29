@@ -93,6 +93,10 @@ html, body, #root {
 	--text-color-notice-data: #888;
 	--text-color-notice-content:#444;
 
+	/* Notificartions 기본 변수 */
+	--bg-color-notification:#f8f8fa;
+	--text-color-notification:#222;
+
 	/* PostCard 기본 변수 */
 	--text-color-card-likes: #222;
 
@@ -104,7 +108,7 @@ html, body, #root {
 	--text-color-topbar:#555;
 
 	/* 아이콘 기본 변수 */
-	--icon-color-primary:#000;
+	--color-icon-primary:#000;
 
 }
 /* 다크모드 변수 설정 */
@@ -137,6 +141,10 @@ html.dark {
 	--text-color-toggle-switch-label:#d3d3d3;
 	--text-color-toggle-switch-desc:#b6b6b6;
 
+	/* Notificartions 다크모드 변수 */
+	--bg-color-notification:#444444;
+	--text-color-notification:#888;
+
 	/* PostCard 다크모드 변수 */
 	--text-color-card-likes: #888;
 
@@ -144,7 +152,7 @@ html.dark {
 	--text-color-topbar:#b3b3b3;
 	
 	/* 아이콘 다크모드 변수 */
-	--icon-color-primary:#fff;
+	--color-icon-primary:#fff;
 	
 }
 
@@ -183,7 +191,12 @@ body{
 }
 
 /* 얩 전반 아이콘 색상 설정 */
+
 .app-icon{
-	color: var(--icon-color-primary);
+	color: var(--color-icon-primary);
 	transition: all 0.3s ease;
+}
+.app-width-hegth{
+	width: 28px;
+	height: 28px;
 }

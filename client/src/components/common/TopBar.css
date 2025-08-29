@@ -28,6 +28,7 @@
 .topbar-actions {
   display: flex;
   gap: 18px;
+  color: var(--text-color-primary);
 }
 .topbar-actions a {
   position: relative;

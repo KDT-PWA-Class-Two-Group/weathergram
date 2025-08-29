@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import BellIcon from "../icon/BellIcon";
+import SettingsIcon from "../icon/SettingsIcon";
+import MpapinIcom from "../icon/MpapinIcom";
 import "./TopBar.css";
 
 function TopBar({ notifications }) {
@@ -39,16 +42,16 @@ function TopBar({ notifications }) {
   return (
     <header className="topbar">
       <div className="topbar-title">
-        <img src="/images/icons/map-pin.svg" alt="맵 아이콘 이미지" />
+        <MpapinIcom className="app-icon"/>
         <span className="topbar-location">{locationName}</span>
       </div>
       <nav className="topbar-actions">
         <Link to="/notifications" className={location.pathname === "/notifications" ? "active" : ""}>
-            <img src="/images/icons/bell.svg" alt="알림 이미지" className="app-icon"/>
+            <BellIcon className="app-icon"/>
             {unreadCount > 0 && <span className="notification-badge">{displayCount}</span>}
         </Link>
         <Link to="/settings" className={location.pathname === "/settings" ? "active" : ""}>
-            <img src="/images/icons/settings.svg" alt="설정 이미지" />
+            <SettingsIcon className="app-icon"/>
         </Link>
       </nav>
     </header>
