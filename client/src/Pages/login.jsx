@@ -1,7 +1,7 @@
 import "./Login.css";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { handleSave } from "../api/user";
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { handleSave } from "../api/user";
 
 export default function Login() {
   const handleSocialLogin = (platform) => {
