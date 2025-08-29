@@ -24,7 +24,7 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
       {!isLoginPage && <TopBar notifications={notifications} />}
       <div className="content">
         <Routes>
-          <Route path="/" element={<Weather />} />
+          <Route path="/main" element={<Weather />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/feed"
@@ -61,7 +61,8 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 true로 설정
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     // 예시: localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
