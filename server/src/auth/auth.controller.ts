@@ -37,7 +37,7 @@ export class AuthController {
     res.cookie('access_token', accessToken, this.cookieOpts.access);
     res.cookie('refresh_token', refreshToken, this.cookieOpts.refresh);
 
-    return res.redirect(`${process.env.FRONTEND_URL}/main`);
+    return res.redirect(`${process.env.FRONTEND_URL}/`);
   }
 
   @Get('naver')
@@ -55,7 +55,7 @@ export class AuthController {
     res.cookie('access_token', accessToken, this.cookieOpts.access);
     res.cookie('refresh_token', refreshToken, this.cookieOpts.refresh);
 
-    return res.redirect(`${process.env.FRONTEND_URL}/main`);
+    return res.redirect(`${process.env.FRONTEND_URL}/`);
   }
 
   // 현재 로그인한 사용자 정보

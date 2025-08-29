@@ -1,9 +1,15 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import TopBar from "./components/common/TopBar";
-import Login from "./Pages/Login";
+import Login from "./Pages/login";
 import Feed from "./Pages/Feed";
 import Upload from "./Pages/Upload";
 import Notifications from "./Pages/Notifications";
@@ -36,13 +42,19 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
           />
           <Route
             path="/mypage"
-            element={isLoggedIn ? <MyPages /> : <Navigate replace to="/login" />}
+            element={
+              isLoggedIn ? <MyPages /> : <Navigate replace to="/login" />
+            }
           />
           <Route
             path="/notifications"
             element={
               isLoggedIn ? (
-                <Notifications notifications={notifications} markAsRead={markAsRead} markAllAsRead={markAllAsRead} />
+                <Notifications
+                  notifications={notifications}
+                  markAsRead={markAsRead}
+                  markAllAsRead={markAllAsRead}
+                />
               ) : (
                 <Navigate replace to="/login" />
               )
@@ -50,7 +62,9 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
           />
           <Route
             path="/settings"
-            element={isLoggedIn ? <Settings /> : <Navigate replace to="/login" />}
+            element={
+              isLoggedIn ? <Settings /> : <Navigate replace to="/login" />
+            }
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -61,7 +75,7 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 true로 설정
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 임시로 true로 설정
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // 테스트 중 항상 로그인 상태를 유지하려면 아래 useEffect를 주석 처리하세요.

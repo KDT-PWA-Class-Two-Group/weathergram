@@ -2,11 +2,12 @@ import "./Login.css";
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { handleSave } from "../api/user";
+import { googleLogin, naverLogin } from "../auth/googleLogin";
 
 export default function Login() {
   const handleSocialLogin = (platform) => {
     alert(`${platform} 로그인 기능은 현재 구현 중입니다.`);
-    // 실제 소셜 로그인 로직은 여기에 구현
+    // 카카오만!
   };
 
   // 직접 로그인 관련 상태와 함수 (현재 사용 안함)
@@ -39,10 +40,7 @@ export default function Login() {
         <h2 className="login-title">Weathergram</h2>
         <p className="login-subtitle">날씨와 함께 순간을 공유하세요</p>
         {/* 소셜 로그인 만 */}
-        <button
-          className="social-button google"
-          onClick={() => handleSocialLogin("Google")}
-        >
+        <button className="social-button google" onClick={googleLogin}>
           Google로 로그인
         </button>
         <button
@@ -51,10 +49,7 @@ export default function Login() {
         >
           Kakao로 로그인
         </button>
-        <button
-          className="social-button naver"
-          onClick={() => handleSocialLogin("Naver")}
-        >
+        <button className="social-button naver" onClick={naverLogin}>
           Naver로 로그인
         </button>
 
