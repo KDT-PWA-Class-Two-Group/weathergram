@@ -61,12 +61,12 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 true로 설정`
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 true로 설정
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);  // 여기서 사용
+  const token = localStorage.getItem("token");
+  setIsLoggedIn(!!token);  // 여기서 사용
   }, []);
 
   // 알림 더미 데이터
