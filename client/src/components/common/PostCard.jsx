@@ -5,7 +5,7 @@ import "./PostCard.css";
 function PostCard({
   postId,
   userProfile,
-  username = "그린컴퓨터아카데미",
+  username,
   location = "둔산동",
   postImg,
   content = "",

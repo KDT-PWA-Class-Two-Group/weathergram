@@ -1,6 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, ForbiddenException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindOptionsWhere } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Post } from './entities/post.entity';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -12,9 +12,12 @@ export class PostsService {
     private readonly postsRepo: Repository<Post>,
   ) {}
 
-  async create(dto: CreatePostDto) {
+  // req.user에서 받은 로그인 사용자로 저장
+  async create(dto: CreatePostDto, user: { id: number }) {
     const post = this.postsRepo.create({
       content: dto.content ?? null,
+      // 관계에 사용자 연결 (user_id 컬럼 채워짐)
+      user: { id: user.id } as any,
     });
     return this.postsRepo.save(post);
   }
@@ -24,25 +27,42 @@ export class PostsService {
       order: { id: 'DESC' },
       skip: (page - 1) * limit,
       take: limit,
+      relations: ['user'], // 필요 시 작성자 정보까지
     });
     return { items, total, page, limit };
   }
 
   async findOne(id: number) {
-    const post = await this.postsRepo.findOne({ where: { id } as FindOptionsWhere<Post> });
+    const post = await this.postsRepo.findOne({
+      where: { id },
+      relations: ['user'],
+    });
     if (!post) throw new NotFoundException('Post not found');
     return post;
   }
 
-  async update(id: number, dto: UpdatePostDto) {
-    const post = await this.findOne(id);
-    post.content = dto.content ?? post.content;
-    return this.postsRepo.save(post);
+  // 작성자만 수정 가능하게 예시
+  async update(id: number, dto: UpdatePostDto, user?: { id: number }) {
+    const post = await this.postsRepo.findOne({ where: { id }, relations: ['user'] });
+    if (!post) throw new NotFoundException('Post not found');
+
+    if (user && post.user?.id !== user.id) {
+      throw new ForbiddenException('No permission to edit this post');
+    }
+
+    post.content = dto.content ?? post.content ?? null;
+    return this.postsRepo.save(post); // updatedAt은 DB가 자동 갱신
   }
 
-  async remove(id: number) {
-    const post = await this.findOne(id);
-    await this.postsRepo.remove(post);
-    return { id };
+  async remove(id: number, user?: { id: number }) {
+    const post = await this.postsRepo.findOne({ where: { id }, relations: ['user'] });
+    if (!post) throw new NotFoundException('Post not found');
+
+    if (user && post.user?.id !== user.id) {
+      throw new ForbiddenException('No permission to delete this post');
+    }
+
+    await this.postsRepo.delete(id);
+    return { success: true };
   }
 }

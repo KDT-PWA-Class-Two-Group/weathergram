@@ -48,7 +48,7 @@ function FeedPage() {
             key={post.id ?? post.postId}
             postId={post.id ?? post.postId}
             userProfile={post.userProfile}
-            username={post.username}
+            username={post.user?.name}
             location={post.location}
             postImg={post.postImg}
             content={post.content}
