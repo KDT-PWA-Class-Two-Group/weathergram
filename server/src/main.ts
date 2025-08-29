@@ -18,7 +18,7 @@ async function bootstrap() {
     origin: [configService.get<string>('FRONTEND_URL')],
     credentials: true,
   })
-
+    
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // DTO에 정의되지 않은 필드 제거
