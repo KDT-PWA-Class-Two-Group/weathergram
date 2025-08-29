@@ -1,15 +1,9 @@
 import "./App.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import TopBar from "./components/common/TopBar";
-import Login from "./Pages/login";
+import Login from "./Pages/Login";
 import Feed from "./Pages/Feed";
 import Upload from "./Pages/Upload";
 import Notifications from "./Pages/Notifications";
@@ -42,19 +36,13 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
           />
           <Route
             path="/mypage"
-            element={
-              isLoggedIn ? <MyPages /> : <Navigate replace to="/login" />
-            }
+            element={isLoggedIn ? <MyPages /> : <Navigate replace to="/login" />}
           />
           <Route
             path="/notifications"
             element={
               isLoggedIn ? (
-                <Notifications
-                  notifications={notifications}
-                  markAsRead={markAsRead}
-                  markAllAsRead={markAllAsRead}
-                />
+                <Notifications notifications={notifications} markAsRead={markAsRead} markAllAsRead={markAllAsRead} />
               ) : (
                 <Navigate replace to="/login" />
               )
@@ -62,9 +50,7 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
           />
           <Route
             path="/settings"
-            element={
-              isLoggedIn ? <Settings /> : <Navigate replace to="/login" />
-            }
+            element={isLoggedIn ? <Settings /> : <Navigate replace to="/login" />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
