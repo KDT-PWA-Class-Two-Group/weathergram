@@ -13,7 +13,16 @@ type CreateFromProviderInput = {
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(User) private repo: Repository<User>) {}
+  constructor(
+    @InjectRepository(User) private repo: Repository<User>) { }
+
+  async findPostsByUserId(userId: number) {
+    return this.repo.findOne({ where: { id: userId }, relations: ['posts'] });
+  }
+
+  async findByIdWithPosts(id: number) {
+    return this.repo.findOne({ where: { id }, relations: ['posts'] });
+  }
 
   async findById(id: number) {
     return this.repo.findOne({ where: { id } });

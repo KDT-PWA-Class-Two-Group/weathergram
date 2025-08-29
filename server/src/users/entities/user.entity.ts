@@ -1,7 +1,8 @@
 import {
   Entity, PrimaryGeneratedColumn, Column,
-  CreateDateColumn, UpdateDateColumn, Index
+  CreateDateColumn, UpdateDateColumn, Index, OneToMany
 } from 'typeorm';
+import { Post } from 'src/posts/entities/post.entity';
 
 @Entity('users')
 @Index(['provider', 'providerId'], { unique: true })
@@ -33,4 +34,7 @@ export class User {
 
   @Column({ type: 'timestamp', nullable: true })
   lastLoginAt: Date | null;
+
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 }
