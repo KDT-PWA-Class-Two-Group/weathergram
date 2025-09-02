@@ -67,6 +67,104 @@ html, body, #root {
 
 * { font-family: 'Pretendard', sans-serif; }
 
+/* 기본 라이트모드 변수 설정 */
+:root{
+	--bg-color-root:lightblue;
+	--bg-color-overlay: white;
+	--bg-color-primary: white;
+	--text-color-primary: #1a1a1a;
+	--border-color-primary: 1px solid #e5e5e5;
+	--text-color-red: #f00;
+
+	/* Weather 기본 변수 */
+	--bg-color-waether:#fff;
+	--text-color-waether-gray:#888;
+	--text-color-waether-blue:#1976d2;
+
+	/* Login 기본 변수 */
+	--text-color-login-title:#222;
+	--text-color-login-connet:#555;
+
+	/* Uplods 기본 변수 */
+	--bg-color-upload: #f0f4f8;
+
+	/* settings 기본 변수 */
+	--text-color-settings-notice: #888;
+	--text-color-settings-notice-h4: #333;
+	--text-color-notice-data: #888;
+	--text-color-notice-content:#444;
+
+	/* Notificartions 기본 변수 */
+	--bg-color-notification:#f8f8fa;
+	--text-color-notification:#222;
+
+	/* PostCard 기본 변수 */
+	--text-color-card-likes: #222;
+
+	/* toggleSwitch 기본 변수 */
+	--text-color-toggle-switch-label:#222;
+	--text-color-toggle-switch-desc:#888;
+
+	/* TopBar 기본변수 */
+	--text-color-topbar:#555;
+
+	/* 아이콘 기본 변수 */
+	--color-icon-primary:#000;
+
+}
+/* 다크모드 변수 설정 */
+html.dark {
+	--bg-color-root:#1a1a1a;
+	--bg-color-overlay:#2a2a2a;
+	--bg-color-primary: #2a2a2a;
+	--text-color-primary: #e5e5e5;
+	--border-color-primary: 1px solid #a9a9a9;
+	--text-color-red: rgb(255, 67, 67);
+
+
+	/* Weather 다크모드 변수 */
+	--bg-color-waether:#3f3f3f;
+	--text-color-waether-gray:#c7c7c7;
+	--text-color-waether-blue:#3690eb;
+
+	/* Login 기본 변수 */
+	--text-color-login-title:#d3d3d3;
+	--text-color-login-connet:#b3b3b3;
+
+	/* Uplods 기본 변수 */
+	--bg-color-upload: #2a2a2a;
+
+	/* settings 다크모드 변수 */
+	--text-color-settings-notice: #e5e5e5;
+  --text-color-settings-notice-h4: #c2c2c2;
+	--text-color-notice-data: #e5e5e5;
+  --text-color-notice-content:#b3b3b3;
+
+	/* toggleSwitch 다크모드 변수 */
+	--text-color-toggle-switch-label:#d3d3d3;
+	--text-color-toggle-switch-desc:#b6b6b6;
+
+	/* Notificartions 다크모드 변수 */
+	--bg-color-notification:#444444;
+	--text-color-notification:#888;
+
+	/* PostCard 다크모드 변수 */
+	--text-color-card-likes: #888;
+
+	/* TopBar 다크모드 변수 */
+	--text-color-topbar:#b3b3b3;
+	
+	/* 아이콘 다크모드 변수 */
+	--color-icon-primary:#fff;
+	
+}
+
+body{
+	color: var(--text-color-primary);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
 /* 설정 */
 .root {
   min-height: 100vh;
@@ -75,7 +173,7 @@ html, body, #root {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-	background-color: lightblue;
+	background-color: var(--bg-color-root)
 }
 .overlay {
 	position: relative;
@@ -84,7 +182,7 @@ html, body, #root {
   min-height: 100vh;
   margin: 0 auto;
   box-sizing: border-box;
-	background-color: white;
+	background-color: var(--bg-color-overlay)
 }
 
 .content {
@@ -93,4 +191,21 @@ html, body, #root {
 	max-width: 440px;
 	min-height: calc(100vh - 130px);
 	margin: 0 auto;
+}
+
+/* 얩 전반 아이콘 색상 설정 */
+
+.app-icon{
+	color: var(--color-icon-primary);
+	transition: all 0.3s ease;
+}
+.weather-icon{
+	color: var(--color-icon-primary);
+	width: 25px;
+	height: 25px;
+	transition: all 0.3s ease;
+}
+.app-width-hegth{
+	width: 28px;
+	height: 28px;
 }

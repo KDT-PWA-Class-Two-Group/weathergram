@@ -1,7 +1,7 @@
 .weekly-forecast-list {
   padding: 20px;
   margin: 0 20px;
-  background: #fff;
+  background: var(--bg-color-waether);
   border-radius: 16px;
   box-shadow: 0 2px 8px #0001;
   margin-bottom: 100px;
@@ -51,15 +51,15 @@
 }
 
 .weekly-forecast-max {
-  color: #1976d2;
+  color: var(--text-color-waether-blue);
   font-weight: 600;
 }
 .weekly-forecast-min {
-  color: #888;
+  color:var(--text-color-waether-gray);
 }
 .weekly-forecast-pop {
   width: 54px;
   text-align: right;
-  color: #1976d2;
+  color: var(--text-color-waether-blue);
   font-size: 14px;
 }

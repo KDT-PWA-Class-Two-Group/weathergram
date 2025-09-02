@@ -67,6 +67,6 @@
 }
 .card-likes {
   font-weight: 600;
-  color: #222;
+  color: var(--text-color-card-likes);
   font-size: 14px;
 }

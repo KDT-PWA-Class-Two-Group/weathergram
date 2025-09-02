@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f0f4f8;
+  background: transparent;
 }
 
 .login-card {
@@ -11,7 +11,7 @@
   height: 590px;
   border: 1px solid #505050;
   border-radius: 12px;
-  background: #fff;
+  background: var(--bg-color-overlay);
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
@@ -29,12 +29,12 @@
   margin: 0;
   font-weight: 700;
   font-size: 28px;
-  color: #222;
+  color: var(--text-color-login-title);
 }
 
 .login-subtitle {
   margin: 12px 0 32px 0;
-  color: #555;
+  color: var(--text-color-login-connet);
   font-size: 16px;
   text-align: center;
 }
@@ -80,7 +80,7 @@
 .login-info {
   margin-top: 16px;
   font-size: 14px;
-  color: #555;
+  color: var(--text-color-login-connet);
   text-align: center;
 }
 

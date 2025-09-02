@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ThemeProvider } from "./context/ThemeProvider.jsx"
 
 import TopBar from "./components/common/TopBar";
 import Login from "./Pages/Login";

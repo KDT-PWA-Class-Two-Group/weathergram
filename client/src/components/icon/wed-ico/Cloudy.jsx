@@ -1,0 +1,24 @@
+import React from "react";
+
+export const Cloudy = ({className}) => {
+  return(
+    <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.72 43.38" className={className} color="currentColor" style={{strokeWidth:'3'}}>
+  <defs>
+    <style>
+      {`.cls-1 {
+            fill: none;
+            stroke: currentColor;
+            strokelinecap: round;
+            strokelinejoin: round;
+            strokewidth: 3px;
+          }`}
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-1" d="M53.17,18.95c5.18,1.16,9.05,5.79,9.05,11.32,0,6.41-5.2,11.6-11.6,11.6H13.1c-6.41,0-11.6-4.56-11.6-10.97,0-5.48,3.8-10.08,8.91-11.29-.32-.94-.49-1.94-.49-2.98,0-5.16,4.18-9.34,9.34-9.34,2.56,0,4.88,1.03,6.57,2.7h0c2.27-5.01,7.32-8.5,13.18-8.5,7.99,0,14.47,6.48,14.47,14.47,0,1.02-.31,2.99-.31,2.99h0Z"/>
+  </g>
+</svg>
+  )
+}
+
+export default Cloudy

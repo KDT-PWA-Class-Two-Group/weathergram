@@ -26,11 +26,11 @@
 .toggle-switch-label {
   font-weight: 500;
   font-size: 14px;
-  color: #222;
+  color: var(--text-color-toggle-switch-label);
 }
 .toggle-switch-desc {
   font-size: 12px;
-  color: #888;
+  color: var(--text-color-toggle-switch-desc);
 }
 /* 버튼 */
 .toggle-switch-input {
@@ -77,4 +77,5 @@
 .toggle-switch-input:disabled + .toggle-switch-slider:before {
   background: #f5f5f5;
 }
+
 

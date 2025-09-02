@@ -39,13 +39,13 @@
   align-items: center;
   gap: 14px;
   font-size: 15px;
-  color: #222;
+  color: var(--text-color-notification);
   box-shadow: 0 1px 4px #0001;
   transition: background 0.2s;
 }
 .notification-item.unread {
   font-weight: 600;
-  background: #f8f8fa;
+  background: var(--bg-color-notification);
   border-color: #cdccd1;
 }
 .notification-icon {

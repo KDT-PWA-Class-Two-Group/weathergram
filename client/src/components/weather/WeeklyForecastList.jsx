@@ -6,6 +6,14 @@ import { fetchWeeklyForecast } from "../../api/weather";
 // 브라우저 현재 위치를 얻는 유틸리티 임포트
 import { getBrowserLocation } from "../../utils/location";
 
+//아이콘
+import Clear from "../icon/wed-ico/Clear";
+import Clouds from "../icon/wed-ico/Clouds";
+import Night from "../icon/wed-ico/night";
+import Rain from "../icon/wed-ico/Rain";
+import Snow from "../icon/wed-ico/Snow";
+import Thunderstoem from "../icon/wed-ico/Thunderstoem";
+
 // 서버에서 받은 날짜/시간 정보를 한국어 요일 문자열로 변환
 function getKoreanWeekday({ dt, dateStr, timezone = 0 }) {
   let d;
@@ -44,23 +52,15 @@ function normalizeWeeklyList(list, timezone) {
   });
 }
 
-// 날씨 상태 문자열에 따른 아이콘 이미지 URL 반환
-function getWeatherIconUrl(weather) {
-  const key = (weather || "").toString().trim().toLowerCase();
-  switch (key) {
-    case "clear":
-      return "/images/wea-ico/clear.svg";
-    case "clouds":
-      return "/images/wea-ico/clouds.svg";
-    case "rain":
-      return "/images/wea-ico/rain.svg";
-    case "snow":
-      return "/images/wea-ico/snow.svg";
-    case "thunderstorm":
-      return "/images/wea-ico/thunderstorm.svg";
-    default:
-      return "/images/wea-ico/cloudy.svg";
-  }
+// 날씨 상태 문자열에 따른 아이콘
+const iconComponents = {
+  'clear' : Clear,
+  'clouds' : Clouds,
+  'night' : Night,
+  'rain' : Rain,
+  'snow' : Snow,
+  'thunderstorm' : Thunderstoem,
+  'default' : Clear
 }
 
 // 샘플 데이터 (실제 데이터가 없을 때 사용)
@@ -143,8 +143,10 @@ function WeeklyForecastList({ data, lat, lon, city, country, days = 5 }) {
       {loading && <div className="weekly-forecast-loading">불러오는 중…</div>}
       {error && <div className="weekly-forecast-error">{error}</div>}
       <div className="weekly-forecast-table">
-        {items.map((item, idx) => (
-          <div
+        {items.map((item, idx) => {
+          const IconComponent = iconComponents[item.weather]
+          return(
+            <div
             key={idx}
             className={`weekly-forecast-row${
               idx !== items.length - 1 ? "" : " last"
@@ -153,10 +155,7 @@ function WeeklyForecastList({ data, lat, lon, city, country, days = 5 }) {
             <div className="weekly-forecast-day">{item.day}</div>
             <div className="weekly-forecast-info">
               <div className="weekly-forecast-icon">
-                <img
-                  src={getWeatherIconUrl(item.weather)}
-                  alt={item.weather || "weather"}
-                />
+                {IconComponent && <IconComponent className='weather-icon' />}
               </div>
               <span className="weekly-forecast-min">{item.min ?? "-"}°C /</span>
               <span className="weekly-forecast-max">{item.max ?? "-"}°C</span>
@@ -165,7 +164,8 @@ function WeeklyForecastList({ data, lat, lon, city, country, days = 5 }) {
               )}
             </div>
           </div>
-        ))}
+            )
+          })}
       </div>
     </div>
   );
