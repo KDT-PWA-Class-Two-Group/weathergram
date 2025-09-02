@@ -12,7 +12,7 @@ function PostCard({
   createdAt,
   updatedAt,
   initialLikesCount = 0,
-  onEdit = () => {},
+  // onEdit = () => {},
   onDelete = () => {},
   isOwner = true,
 }) {
@@ -65,10 +65,10 @@ function PostCard({
     setLikesCount(newCount);
   };
 
-  const handleEdit = () => {
-    setMenuOpen(false);
-    onEdit(postId);
-  };
+  // const handleEdit = () => {
+  //   setMenuOpen(false);
+  //   onEdit(postId);
+  // };
 
   const handleDelete = () => {
     setMenuOpen(false);
@@ -109,6 +109,7 @@ function PostCard({
                 lineHeight: 1,
                 cursor: "pointer",
                 padding: "4px 8px",
+                color:'var(--text-color-primary)'
               }}
             >
               ⋯
@@ -122,15 +123,15 @@ function PostCard({
                   top: "32px",
                   right: 0,
                   minWidth: "120px",
-                  background: "#fff",
+                  background: 'var(--bg-color-primary)',
                   border: "1px solid #e5e5e5",
                   borderRadius: "6px",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                  boxShadow: 'var(--border-color-primary)',
                   zIndex: 10,
                   overflow: "hidden",
                 }}
               >
-                <button
+                {/* <button
                   type="button"
                   role="menuitem"
                   onClick={handleEdit}
@@ -144,7 +145,7 @@ function PostCard({
                   }}
                 >
                   수정
-                </button>
+                </button> */}
                 <div style={{ height: 1, background: "#eee" }} />
                 <button
                   type="button"
@@ -154,10 +155,10 @@ function PostCard({
                     width: "100%",
                     textAlign: "left",
                     padding: "10px 12px",
-                    background: "transparent",
+                    background: 'var(--bg-color-primary)',
                     border: "none",
                     cursor: "pointer",
-                    color: "#d00",
+                    color: "var(--text-color-red)",
                   }}
                 >
                   삭제

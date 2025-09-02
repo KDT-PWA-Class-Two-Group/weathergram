@@ -73,7 +73,8 @@ html, body, #root {
 	--bg-color-overlay: white;
 	--bg-color-primary: white;
 	--text-color-primary: #1a1a1a;
-	--border-color-primary: 1px solid #a9a9a9;
+	--border-color-primary: 1px solid #e5e5e5;
+	--text-color-red: #f00;
 
 	/* Weather 기본 변수 */
 	--bg-color-waether:#fff;
@@ -118,6 +119,8 @@ html.dark {
 	--bg-color-primary: #2a2a2a;
 	--text-color-primary: #e5e5e5;
 	--border-color-primary: 1px solid #a9a9a9;
+	--text-color-red: rgb(255, 67, 67);
+
 
 	/* Weather 다크모드 변수 */
 	--bg-color-waether:#3f3f3f;
@@ -194,6 +197,12 @@ body{
 
 .app-icon{
 	color: var(--color-icon-primary);
+	transition: all 0.3s ease;
+}
+.weather-icon{
+	color: var(--color-icon-primary);
+	width: 25px;
+	height: 25px;
 	transition: all 0.3s ease;
 }
 .app-width-hegth{

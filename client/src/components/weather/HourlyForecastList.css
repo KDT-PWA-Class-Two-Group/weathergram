@@ -6,7 +6,17 @@
   margin: 20px;
   max-width: 350px;
   overflow-x: auto;
+
+  /* 스크롤바 숨기기 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+/* 스크롤바 숨기기 */
+.hourly-forecast-list::-webkit-scrollbar{
+  display: none;
+}
+
 .hourly-forecast-title {
   font-weight: 600;
   font-size: 16px;

@@ -3,21 +3,22 @@ import "./HourlyForecastList.css";
 import { getBrowserLocation } from "../../utils/location";
 import { fetchHourlyForecast } from "../../api/weather";
 
-function getWeatherIconUrl(weather) {
-  switch (weather) {
-    case 'clear':
-      return '/images/wea-ico/clear.svg';
-    case 'clouds':
-      return '/images/wea-ico/clouds.svg';
-    case 'rain':
-      return '/images/wea-ico/rain.svg';
-    case 'snow':
-      return '/images/wea-ico/snow.svg';
-    case 'thunderstorm':
-      return '/images/wea-ico/thunderstorm.svg';
-    default:
-      return '/images/wea-ico/cloudy.svg';
-  }
+//아이콘
+import Clear from "../icon/wed-ico/Clear";
+import Clouds from "../icon/wed-ico/Clouds";
+import Night from "../icon/wed-ico/night";
+import Rain from "../icon/wed-ico/Rain";
+import Snow from "../icon/wed-ico/Snow";
+import Thunderstoem from "../icon/wed-ico/Thunderstoem";
+
+const iconComponents = {
+  'clear' : Clear,
+  'clouds' : Clouds,
+  'night' : Night,
+  'rain' : Rain,
+  'snow' : Snow,
+  'thunderstorm' : Thunderstoem,
+  'default' : Clear
 }
 
 function HourlyForecastList() {
@@ -57,16 +58,19 @@ function HourlyForecastList() {
     <div className="hourly-forecast-list">
       <div className="hourly-forecast-title">시간별 예보</div>
       <div className="hourly-forecast-row">
-        {data.map((item, idx) => (
+        {data.map((item, idx) => {    
+          const IconComponent = iconComponents[item.weather]
+          return(
           <div key={idx} className="hourly-forecast-item">
             <div className="hourly-forecast-hour">{item.hour}</div>
             <div className="hourly-forecast-icon">
-              <img src={getWeatherIconUrl(item.weather)} alt={item.weather} />
+              {IconComponent && <IconComponent className='weather-icon' />}
             </div>
             <div className="hourly-forecast-temp">{item.temp}°</div>
             <div className="hourly-forecast-pop">{`${item.pop}%`}</div>
           </div>
-        ))}
+          )          
+        })}
       </div>
     </div>
   );
