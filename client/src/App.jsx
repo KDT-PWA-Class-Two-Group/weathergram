@@ -107,6 +107,7 @@ function App() {
     );
 
   return (
+    <ThemeProvider>
     <div className="root">
       <BrowserRouter>
         <AppLayout
@@ -117,6 +118,7 @@ function App() {
         />
       </BrowserRouter>
     </div>
+    </ThemeProvider>
   );
 }
 

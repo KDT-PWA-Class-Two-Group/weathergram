@@ -5,8 +5,6 @@ import SettingsApp from "../components/settings/SettingsApp";
 import SettingsAccount from "../components/settings/SettingsAccount";
 import "./Settings.css";
 
-import { DarkModeToggle } from "../components/common/DarkMode";
-
 
 // 예시 공지사항 데이터
 const notices = [
@@ -62,8 +60,7 @@ function Settings() {
         handleNotification={handleNotification}
       />
 
-      <DarkModeToggle
-          description={"다크모드로 변경합니다"}/>
+      <SettingsApp />
 
       <SettingsAccount
         modal={modal}
