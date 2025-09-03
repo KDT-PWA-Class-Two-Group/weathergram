@@ -13,22 +13,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 추가된 부분 */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* 전체 페이지 스크롤 방지 */
+}
+
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+/* 기존 body는 일부 속성이 #root로 이동되어 제거됨 */
 
 h1 {
   font-size: 3.2em;
@@ -66,3 +70,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+

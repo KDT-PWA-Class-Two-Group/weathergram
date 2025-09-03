@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // 앱이 처음 로드될 때 localStorage에서 토큰을 확인하여 초기 로그인 상태 설정
-  useEffect(() => {
+  useEffect(() => { 
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);

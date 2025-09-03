@@ -69,6 +69,102 @@ html, body, #root {
 
 /* 설정 */
 .root {
+  height: 100%; /* min-height -> height */
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+	background-color: lightblue;
+}
+.overlay {
+	position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 100%; /* min-height -> height */
+  margin: 0 auto;
+  box-sizing: border-box;
+	background-color: white;
+  display: flex; /* 추가 */
+  flex-direction: column; /* 추가 */
+}
+
+.content {
+	flex: 1; /* flex 속성 유지 */
+	width: 100%;
+	max-width: 440px;
+	margin: 0 auto;
+  overflow-y: auto; /* 추가 */
+  /* min-height는 flex 레이아웃에서 불필요하므로 제거 */
+}
+/* 프리텐다드 폰트 */
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 900;
+	font-display: swap;
+  src:url(./../../../public/fonts/Pretendard-Black.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-Black.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 800;
+	font-display: swap;
+	src: local('Pretendard ExtraBold'), url(./../../../public/fonts/Pretendard-ExtraBold.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-ExtraBold.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 700;
+	font-display: swap;
+	src: local('Pretendard Bold'), url(./../../../public/fonts/Pretendard-Bold.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-Bold.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 600;
+	font-display: swap;
+	src: local('Pretendard SemiBold'), url(./../../../public/fonts/Pretendard-SemiBold.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-SemiBold.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 500;
+	font-display: swap;
+	src: local('Pretendard Medium'), url(./../../../public/fonts/Pretendard-Medium.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-Medium.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 400;
+	font-display: swap;
+	src: local('Pretendard Regular'), url(./../../../public/fonts/Pretendard-Regular.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-Regular.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 300;
+	font-display: swap;
+	src: local('Pretendard Light'), url(./../../../public/fonts/Pretendard-Light.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-Light.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 200;
+	font-display: swap;
+	src: local('Pretendard ExtraLight'), url(./../../../public/fonts/Pretendard-ExtraLight.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-ExtraLight.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	font-weight: 100;
+	font-display: swap;
+	src: local('Pretendard Thin'), url(./../../../public/fonts/Pretendard-Thin.woff2) format('woff2'), url(./../../../public/fonts/Pretendard-Thin.woff) format('woff');
+}
+
+* { font-family: 'Pretendard', sans-serif; }
+
+/* 설정 */
+.root {
   min-height: 100vh;
   width: 100vw;
   display: flex;
