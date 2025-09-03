@@ -5,7 +5,7 @@ const AuthContext = createContext(null);
 
 // AuthProvider 컴포넌트 생성
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // 기본값을 true로 설정 (테스트용)
 
   // 앱이 처음 로드될 때 localStorage에서 토큰을 확인하여 초기 로그인 상태 설정
   useEffect(() => { 

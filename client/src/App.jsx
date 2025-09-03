@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { AuthProvider, useAuth } from "./context/AuthContext"; 
 
 import TopBar from "./components/common/TopBar";
-import Login from "./Pages/Login";
+import Login from "./Pages/Login.jsx";
 import Feed from "./Pages/Feed";
 import Upload from "./Pages/Upload";
 import Notifications from "./Pages/Notifications";
@@ -81,7 +81,7 @@ function AppContent() {
 
     if (tokenFromUrl) {
       login(tokenFromUrl);
-      // URL에서 토큰을 제거하여 주소창을 정리합니다.
+      // URL에서 토큰을 제거하여 주소창을 정리
       window.history.replaceState({}, document.title, "/");
     }
   }, [location, login]);
