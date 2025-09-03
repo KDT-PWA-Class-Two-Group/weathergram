@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { AuthProvider, useAuth } from "./context/AuthContext"; 
 
 import TopBar from "./components/common/TopBar";
 import Login from "./Pages/Login";
@@ -13,8 +14,10 @@ import BottomNav from "./components/common/BottomNav";
 import Weather from "./Pages/Weather.jsx";
 import MyPages from "./Pages/myPage.jsx";
 
-function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
+// AppLayout
+function AppLayout({ notifications, markAsRead, markAllAsRead }) {
   const location = useLocation();
+  const { isLoggedIn } = useAuth(); 
 
   // 로그인 페이지에서는 TopBar / BottomNav 숨김
   const isLoginPage = location.pathname === "/login";
@@ -67,30 +70,23 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
   );
 }
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 임시로 true로 설정
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+function AppContent() {
+  const { login } = useAuth();
+  const location = useLocation();
 
-  // 테스트 중 항상 로그인 상태를 유지하려면 아래 useEffect를 주석 처리하세요.
-  // 실제 구현 시에는 주석을 해제하여 토큰 기반으로 로그인 상태를 관리해야 합니다.
+  // OAuth 리디렉션 처리
   useEffect(() => {
-    // URL에서 토큰 확인 (OAuth 리디렉션 처리)
-    const searchParams = new URLSearchParams(window.location.search);
+    const searchParams = new URLSearchParams(location.search);
     const tokenFromUrl = searchParams.get("token");
 
     if (tokenFromUrl) {
-      localStorage.setItem("token", tokenFromUrl);
-      setIsLoggedIn(true);
+      login(tokenFromUrl);
       // URL에서 토큰을 제거하여 주소창을 정리합니다.
       window.history.replaceState({}, document.title, "/");
-    } else {
-      // localStorage에서 토큰 확인 (일반적인 페이지 로드)
-      const tokenFromStorage = localStorage.getItem("token");
-      setIsLoggedIn(!!tokenFromStorage);
     }
-  }, []);
+  }, [location, login]);
 
-  // 알림 더미 데이터
+  // 알림 더미 데이터 (기존 App 컴포넌트에서 이동)
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -125,14 +121,22 @@ function App() {
     );
 
   return (
+    <AppLayout
+      notifications={notifications}
+      markAsRead={markAsRead}
+      markAllAsRead={markAllAsRead}
+    />
+  );
+}
+
+
+function App() {
+  return (
     <div className="root">
       <BrowserRouter>
-        <AppLayout
-          isLoggedIn={isLoggedIn}
-          notifications={notifications}
-          markAsRead={markAsRead}
-          markAllAsRead={markAllAsRead}
-        />
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
