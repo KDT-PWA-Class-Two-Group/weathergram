@@ -24,8 +24,11 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
       {!isLoginPage && <TopBar notifications={notifications} />}
       <div className="content">
         <Routes>
+          <Route
+            path="/login"
+            element={isLoggedIn ? <Navigate replace to="/" /> : <Login />}
+          />
           <Route path="/" element={<Weather />} />
-          <Route path="/login" element={<Login />} />
           <Route
             path="/feed"
             element={isLoggedIn ? <Feed /> : <Navigate replace to="/login" />}
@@ -42,7 +45,11 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
             path="/notifications"
             element={
               isLoggedIn ? (
-                <Notifications notifications={notifications} markAsRead={markAsRead} markAllAsRead={markAllAsRead} />
+                <Notifications
+                  notifications={notifications}
+                  markAsRead={markAsRead}
+                  markAllAsRead={markAllAsRead}
+                />
               ) : (
                 <Navigate replace to="/login" />
               )
@@ -61,15 +68,15 @@ function AppLayout({ isLoggedIn, notifications, markAsRead, markAllAsRead }) {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 true로 설정
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 임시로 true로 설정
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // 테스트 중 항상 로그인 상태를 유지하려면 아래 useEffect를 주석 처리하세요.
   // 실제 구현 시에는 주석을 해제하여 토큰 기반으로 로그인 상태를 관리해야 합니다.
-  // useEffect(() => {
-  // const token = localStorage.getItem("token");
-  // setIsLoggedIn(!!token);  // 여기서 사용
-  // }, []);
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+  setIsLoggedIn(!!token);  // 여기서 사용
+  }, []);
 
   // 알림 더미 데이터
   const [notifications, setNotifications] = useState([
