@@ -16,7 +16,7 @@
 .hourly-forecast-row {
   display: flex;
   gap: 8px;
-  min-width: 648px;
+  /* min-width: 648px; */
 }
 .hourly-forecast-item {
   display: flex;
