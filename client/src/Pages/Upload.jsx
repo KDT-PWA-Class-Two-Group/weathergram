@@ -6,8 +6,10 @@ const API_BASE = import.meta.env.BACKEND_URL;
 
 const Upload = () => {
   const [showModal, setShowModal] = useState(false);
-  // const [preview, setPreview] = useState(null);
-  // const [file, setFile] = useState(null);
+
+  const [preview, setPreview] = useState(null);
+  const [file, setFile] = useState(null);
+
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
 
@@ -15,29 +17,29 @@ const Upload = () => {
   const [contentText, setContentText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // const cameraInputRef = React.useRef(null);
-  // const galleryInputRef = React.useRef(null);
+  const cameraInputRef = React.useRef(null);
+  const galleryInputRef = React.useRef(null);
 
-  // const handleCameraClick = () => {
-  //   setMode("photo");
-  //   cameraInputRef.current.click();
-  // };
-  // const handleGalleryClick = () => {
-  //   setMode("photo");
-  //   galleryInputRef.current.click();
-  // };
+  const handleCameraClick = () => {
+    setMode("photo");
+    cameraInputRef.current.click();
+  };
+  const handleGalleryClick = () => {
+    setMode("photo");
+    galleryInputRef.current.click();
+  };
 
-  // const handleFileChange = (e) => {
-  //   const selectedFile = e.target.files[0];
-  //   if (selectedFile) {
-  //     setFile(selectedFile);
-  //     setPreview(URL.createObjectURL(selectedFile));
-  //     setShowModal(false);
-  //   }
-  // };
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setPreview(URL.createObjectURL(selectedFile));
+      setShowModal(false);
+    }
+  };
 
   const handleSubmit = async () => {
-    if (mode === "photo" /*&& !file*/) return;
+    if (mode === "photo" && !file) return;
     if (mode === "text" && !contentText.trim()) return;
 
     // if (mode === "photo" && file) {
@@ -54,8 +56,8 @@ const Upload = () => {
       const data = await fetchPost(body);
       if (data) {
         setShowSuccessModal(true);
-        // setPreview(null);
-        // setFile(null);
+        setPreview(null);
+        setFile(null);
         setContentText("");
         setMode("idle");
       } else {
@@ -74,7 +76,8 @@ const Upload = () => {
       <h1 className="upload-title"> WeatherGram 📸</h1>
       <p className="upload-text">날씨와 함께 특별한 순간을 공유해보세요</p>
 
-      {/* {preview ? (
+      {/* 업로드 이미지 구간 */}
+      {preview ? (
         <>
           <img src={preview} alt="preview" className="upload-preview" />
           <button
@@ -129,9 +132,10 @@ const Upload = () => {
             </div>
           )}
         </>
-      )} */}
+      )}
 
-      <div className="text-mode">
+      {/* 업로드 텍스트 구간 */}
+      {/* <div className="text-mode">
         <textarea
           className="text-input"
           placeholder="무슨 생각을 기록할까요?"
@@ -157,10 +161,10 @@ const Upload = () => {
             취소
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* 업로드 선택 모달 */}
-      {/* {showModal && (
+      {showModal && (
         <div className="modal-overlay">
           <div className="modal">
             <h2>사진 선택</h2>
@@ -178,7 +182,7 @@ const Upload = () => {
             </button>
           </div>
         </div>
-      )} */}
+      )}
 
       {/* 업로드 성공 모달 */}
       {showSuccessModal && (
@@ -212,7 +216,7 @@ const Upload = () => {
         </div>
       )}
 
-      {/* <input
+      <input
         ref={cameraInputRef}
         type="file"
         accept="image/*"
@@ -226,7 +230,7 @@ const Upload = () => {
         accept="image/*"
         style={{ display: "none" }}
         onChange={handleFileChange}
-      /> */}
+      />
     </div>
   );
 };

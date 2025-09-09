@@ -26,6 +26,7 @@
   color: #fff;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 50px;
 }
 .upload-button:hover {
   background-color: #38b2a6;
